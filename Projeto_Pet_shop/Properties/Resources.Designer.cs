@@ -63,6 +63,16 @@ namespace Projeto_Pet_shop.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _17545 {
+            get {
+                object obj = ResourceManager.GetObject("17545", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Imagem_Loja_Petshop_Amigos_Nat {
             get {
                 object obj = ResourceManager.GetObject("Imagem Loja Petshop Amigos Nat", resourceCulture);

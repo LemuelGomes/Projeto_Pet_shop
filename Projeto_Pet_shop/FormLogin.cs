@@ -39,14 +39,15 @@ namespace Projeto_Pet_shop
                     MySqlDataReader resultadoPesquisa = comando.ExecuteReader();
 
                     if (resultadoPesquisa.Read())
-                    {
-                        MessageBox.Show("Usuário e Senha Corretos! Você está logado!");
+                    {                        
+                        FormCadProdutos FormLogin = new FormCadProdutos();
+                        FormLogin.ShowDialog();
                         textBoxUSUARIO.Clear();
                         textBoxSENHA.Clear();
                     }
                     else
                     {
-                        labelERRO.Text = ("Usuário e/ou Senha Incorreto!");
+                        labelERRO.Text = ("Usuário e/ou Senha Incorreto!");                        
                         textBoxSENHA.Clear();
                     }
                 }
