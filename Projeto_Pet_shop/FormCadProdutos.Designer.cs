@@ -37,6 +37,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxVALORPRODUTO = new System.Windows.Forms.TextBox();
             this.buttonCadProd = new System.Windows.Forms.Button();
+            this.buttonFECHAR = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -74,7 +75,7 @@
             this.textBoxDESCPRODUTO.Location = new System.Drawing.Point(10, 150);
             this.textBoxDESCPRODUTO.Multiline = true;
             this.textBoxDESCPRODUTO.Name = "textBoxDESCPRODUTO";
-            this.textBoxDESCPRODUTO.Size = new System.Drawing.Size(598, 46);
+            this.textBoxDESCPRODUTO.Size = new System.Drawing.Size(598, 56);
             this.textBoxDESCPRODUTO.TabIndex = 2;
             // 
             // textBoxCATPRODUTO
@@ -83,9 +84,8 @@
             this.textBoxCATPRODUTO.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxCATPRODUTO.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxCATPRODUTO.Location = new System.Drawing.Point(10, 275);
-            this.textBoxCATPRODUTO.Multiline = true;
             this.textBoxCATPRODUTO.Name = "textBoxCATPRODUTO";
-            this.textBoxCATPRODUTO.Size = new System.Drawing.Size(598, 33);
+            this.textBoxCATPRODUTO.Size = new System.Drawing.Size(598, 29);
             this.textBoxCATPRODUTO.TabIndex = 3;
             // 
             // label3
@@ -127,13 +127,35 @@
             // 
             // buttonCadProd
             // 
-            this.buttonCadProd.Location = new System.Drawing.Point(60, 445);
+            this.buttonCadProd.BackColor = System.Drawing.Color.White;
+            this.buttonCadProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCadProd.ForeColor = System.Drawing.Color.SteelBlue;
+            this.buttonCadProd.Image = global::Projeto_Pet_shop.Properties.Resources.salvar_buttom;
+            this.buttonCadProd.Location = new System.Drawing.Point(28, 445);
             this.buttonCadProd.Name = "buttonCadProd";
-            this.buttonCadProd.Size = new System.Drawing.Size(115, 40);
+            this.buttonCadProd.Size = new System.Drawing.Size(200, 41);
             this.buttonCadProd.TabIndex = 7;
             this.buttonCadProd.Text = "Cadastrar Produto";
-            this.buttonCadProd.UseVisualStyleBackColor = true;
+            this.buttonCadProd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonCadProd.UseVisualStyleBackColor = false;
             this.buttonCadProd.Click += new System.EventHandler(this.buttonCadProd_Click);
+            // 
+            // buttonFECHAR
+            // 
+            this.buttonFECHAR.BackColor = System.Drawing.Color.White;
+            this.buttonFECHAR.FlatAppearance.BorderSize = 0;
+            this.buttonFECHAR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonFECHAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonFECHAR.ForeColor = System.Drawing.Color.SteelBlue;
+            this.buttonFECHAR.Image = global::Projeto_Pet_shop.Properties.Resources.sair_button;
+            this.buttonFECHAR.Location = new System.Drawing.Point(644, 467);
+            this.buttonFECHAR.Name = "buttonFECHAR";
+            this.buttonFECHAR.Size = new System.Drawing.Size(94, 30);
+            this.buttonFECHAR.TabIndex = 8;
+            this.buttonFECHAR.Text = "Fechar";
+            this.buttonFECHAR.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonFECHAR.UseVisualStyleBackColor = false;
+            this.buttonFECHAR.Click += new System.EventHandler(this.buttonFECHAR_Click);
             // 
             // FormCadProdutos
             // 
@@ -142,6 +164,7 @@
             this.BackgroundImage = global::Projeto_Pet_shop.Properties.Resources._17545;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(750, 509);
+            this.Controls.Add(this.buttonFECHAR);
             this.Controls.Add(this.buttonCadProd);
             this.Controls.Add(this.textBoxVALORPRODUTO);
             this.Controls.Add(this.label4);
@@ -168,5 +191,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBoxVALORPRODUTO;
         private System.Windows.Forms.Button buttonCadProd;
+        private System.Windows.Forms.Button buttonFECHAR;
     }
 }

@@ -41,9 +41,10 @@ namespace Projeto_Pet_shop
                     if (resultadoPesquisa.Read())
                     {                        
                         FormCadProdutos FormLogin = new FormCadProdutos();
-                        FormLogin.ShowDialog();
                         textBoxUSUARIO.Clear();
                         textBoxSENHA.Clear();
+                        FormLogin.ShowDialog();
+                        
                     }
                     else
                     {

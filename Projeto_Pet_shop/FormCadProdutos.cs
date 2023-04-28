@@ -21,7 +21,6 @@ namespace Projeto_Pet_shop
         {
             InitializeComponent();
 
-            InitializeComponent();
             servidor = "Server=localhost;Database=loja_pet_shop;Uid=root;Pwd=";
             conexao = new MySqlConnection(servidor);
             comando = conexao.CreateCommand();
@@ -31,58 +30,40 @@ namespace Projeto_Pet_shop
         {
             bool novoProduto = true;
 
-            if (novoProduto)
-            {
-                try
+            if (textBoxDESCPRODUTO.Text != "" && textBoxCATPRODUTO.Text != "")
+            {                
+                if (novoProduto)
                 {
                     conexao.Open();
-                    comando.CommandText = "SELECT descricao_produto, categoria_produto FROM produtos WHERE descricao_produto = '" + textBoxDESCPRODUTO.Text + "' AND categoria_produto = '" + textBoxCATPRODUTO.Text + "';";
 
-                    MySqlDataReader resultadoPesquisa = comando.ExecuteReader();
-
-                    if (resultadoPesquisa.Read())
+                    try
                     {
-                        novoProduto = false;
-                        MessageBox.Show("Produto já Cadastrado!");
+                        comando.CommandText = "INSERT INTO produtos (descricao_produto, categoria_produto, valor_produto) VALUES ('" + textBoxDESCPRODUTO.Text + "', '" + textBoxCATPRODUTO.Text + "', '" + textBoxVALORPRODUTO.Text + "');";
+                        comando.ExecuteNonQuery();
+                    }
+                    catch (Exception erro)
+                    {
+                        MessageBox.Show(erro.Message);
+                    }
+                    finally
+                    {
+                        conexao.Close();
+                        MessageBox.Show("Produto cadastrado com sucesso!");
                         textBoxDESCPRODUTO.Clear();
                         textBoxCATPRODUTO.Clear();
                         textBoxVALORPRODUTO.Clear();
                     }
                 }
-                catch (Exception erro)
+                else
                 {
-                    MessageBox.Show("Erro ao cadastrar o usuário.Fale com o administrador do sistema.");
+                    MessageBox.Show("Algum campo não está preenchido!");
                 }
-                finally
-                {
-                    conexao.Close();
-                }
-
-                // --------------------------------------- //
-
-                try
-                {
-                    conexao.Open();
-                    comando.CommandText = "INSERT INTO produtos(descricao_produto, categoria_produto, preco_produto, fk_colaborador) VALUES ('" + textBoxDESCPRODUTO.Text + "', '" + textBoxCATPRODUTO.Text + "', '" + textBoxVALORPRODUTO.Text + "', '" + 1 + "');";
-                    comando.ExecuteNonQuery();
-                }
-                catch (Exception erro)
-                {
-                    MessageBox.Show("Erro ao cadastrar o produto. Fale com o administrador do sistema.");
-                }
-                finally
-                {
-                    conexao.Close();
-                    MessageBox.Show("Produto cadastrado com sucesso!");
-                }
-                textBoxDESCPRODUTO.Clear();
-                textBoxCATPRODUTO.Clear();
-                textBoxVALORPRODUTO.Clear();
             }
-            else
-            {
-                MessageBox.Show("Algum campo não está preenchido!");
-            }
+        }
+        private void buttonFECHAR_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
+
