@@ -121,4 +121,7 @@
   <data name="petshop imagem de fundo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\petshop imagem de fundo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Imagem Loja Petshop Amigos Nat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Imagem Loja Petshop Amigos Nat.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
