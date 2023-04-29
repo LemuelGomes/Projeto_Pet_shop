@@ -131,7 +131,7 @@
             this.buttonCadProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCadProd.ForeColor = System.Drawing.Color.SteelBlue;
             this.buttonCadProd.Image = global::Projeto_Pet_shop.Properties.Resources.salvar_buttom;
-            this.buttonCadProd.Location = new System.Drawing.Point(28, 445);
+            this.buttonCadProd.Location = new System.Drawing.Point(17, 446);
             this.buttonCadProd.Name = "buttonCadProd";
             this.buttonCadProd.Size = new System.Drawing.Size(200, 41);
             this.buttonCadProd.TabIndex = 7;

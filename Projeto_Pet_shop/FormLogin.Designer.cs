@@ -121,7 +121,7 @@
             this.labelSENHA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.labelSENHA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelSENHA.ForeColor = System.Drawing.Color.White;
-            this.labelSENHA.Location = new System.Drawing.Point(240, 520);
+            this.labelSENHA.Location = new System.Drawing.Point(240, 521);
             this.labelSENHA.Name = "labelSENHA";
             this.labelSENHA.Size = new System.Drawing.Size(90, 19);
             this.labelSENHA.TabIndex = 6;
