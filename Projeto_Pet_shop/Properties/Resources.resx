@@ -124,6 +124,9 @@
   <data name="salvar_buttom" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\salvar_buttom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="excluir" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\excluir.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="petshop imagem de fundo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\petshop imagem de fundo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -132,5 +135,8 @@
   </data>
   <data name="sair button" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sair button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="excluir (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\excluir (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

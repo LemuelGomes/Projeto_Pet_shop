@@ -38,6 +38,9 @@
             this.textBoxVALORPRODUTO = new System.Windows.Forms.TextBox();
             this.buttonCadProd = new System.Windows.Forms.Button();
             this.buttonFECHAR = new System.Windows.Forms.Button();
+            this.buttonEXCLUIR = new System.Windows.Forms.Button();
+            this.textBoxID = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -133,7 +136,7 @@
             this.buttonCadProd.Image = global::Projeto_Pet_shop.Properties.Resources.salvar_buttom;
             this.buttonCadProd.Location = new System.Drawing.Point(17, 446);
             this.buttonCadProd.Name = "buttonCadProd";
-            this.buttonCadProd.Size = new System.Drawing.Size(200, 41);
+            this.buttonCadProd.Size = new System.Drawing.Size(211, 41);
             this.buttonCadProd.TabIndex = 7;
             this.buttonCadProd.Text = "Cadastrar Produto";
             this.buttonCadProd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -148,14 +151,52 @@
             this.buttonFECHAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonFECHAR.ForeColor = System.Drawing.Color.SteelBlue;
             this.buttonFECHAR.Image = global::Projeto_Pet_shop.Properties.Resources.sair_button;
-            this.buttonFECHAR.Location = new System.Drawing.Point(644, 467);
+            this.buttonFECHAR.Location = new System.Drawing.Point(641, 460);
             this.buttonFECHAR.Name = "buttonFECHAR";
-            this.buttonFECHAR.Size = new System.Drawing.Size(94, 30);
+            this.buttonFECHAR.Size = new System.Drawing.Size(97, 37);
             this.buttonFECHAR.TabIndex = 8;
             this.buttonFECHAR.Text = "Fechar";
             this.buttonFECHAR.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.buttonFECHAR.UseVisualStyleBackColor = false;
             this.buttonFECHAR.Click += new System.EventHandler(this.buttonFECHAR_Click);
+            // 
+            // buttonEXCLUIR
+            // 
+            this.buttonEXCLUIR.BackColor = System.Drawing.Color.White;
+            this.buttonEXCLUIR.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEXCLUIR.ForeColor = System.Drawing.Color.SteelBlue;
+            this.buttonEXCLUIR.Image = global::Projeto_Pet_shop.Properties.Resources.excluir__1_;
+            this.buttonEXCLUIR.Location = new System.Drawing.Point(260, 446);
+            this.buttonEXCLUIR.Name = "buttonEXCLUIR";
+            this.buttonEXCLUIR.Size = new System.Drawing.Size(211, 41);
+            this.buttonEXCLUIR.TabIndex = 9;
+            this.buttonEXCLUIR.Text = "Excluir Produto";
+            this.buttonEXCLUIR.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonEXCLUIR.UseVisualStyleBackColor = false;
+            this.buttonEXCLUIR.Click += new System.EventHandler(this.buttonEXCLUIR_Click);
+            // 
+            // textBoxID
+            // 
+            this.textBoxID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxID.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxID.Location = new System.Drawing.Point(260, 384);
+            this.textBoxID.Name = "textBoxID";
+            this.textBoxID.Size = new System.Drawing.Size(216, 29);
+            this.textBoxID.TabIndex = 10;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.White;
+            this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label5.Location = new System.Drawing.Point(263, 353);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(213, 25);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "ID que deseja excluir";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormCadProdutos
             // 
@@ -164,6 +205,9 @@
             this.BackgroundImage = global::Projeto_Pet_shop.Properties.Resources._17545;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(750, 509);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.textBoxID);
+            this.Controls.Add(this.buttonEXCLUIR);
             this.Controls.Add(this.buttonFECHAR);
             this.Controls.Add(this.buttonCadProd);
             this.Controls.Add(this.textBoxVALORPRODUTO);
@@ -192,5 +236,8 @@
         private System.Windows.Forms.TextBox textBoxVALORPRODUTO;
         private System.Windows.Forms.Button buttonCadProd;
         private System.Windows.Forms.Button buttonFECHAR;
+        private System.Windows.Forms.Button buttonEXCLUIR;
+        private System.Windows.Forms.TextBox textBoxID;
+        private System.Windows.Forms.Label label5;
     }
 }
