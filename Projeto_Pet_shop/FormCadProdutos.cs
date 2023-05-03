@@ -28,7 +28,7 @@ namespace Projeto_Pet_shop
 
         private void buttonCadProd_Click(object sender, EventArgs e)
         {
-            bool novoProduto = false;
+            bool novoProduto = true;
 
             if (textBoxDESCPRODUTO.Text != "" && textBoxCATPRODUTO.Text != "")
             {
@@ -43,7 +43,7 @@ namespace Projeto_Pet_shop
 
                         if (resultado.Read())
                         {
-                            novoProduto = true;
+                            novoProduto = false;
                             MessageBox.Show("Produto já Cadastrado!!!");
                         }
                     }
@@ -56,10 +56,11 @@ namespace Projeto_Pet_shop
                         conexao.Close();
                     }
 
-                    if (novoProduto == false && textBoxDESCPRODUTO.Text != "" && textBoxVALORPRODUTO.Text != "")
-                    {
+                    if (novoProduto == true && textBoxDESCPRODUTO.Text != "" && textBoxVALORPRODUTO.Text != "")
+                    {                        
                         try
                         {
+                            conexao.Open();
                             comando.CommandText = "INSERT INTO produtos (descricao_produto, categoria_produto, valor_produto) VALUES ('" + textBoxDESCPRODUTO.Text + "', '" + textBoxCATPRODUTO.Text + "', '" + textBoxVALORPRODUTO.Text.Replace(",", ".") + "');";
                             comando.ExecuteNonQuery();
                         }
@@ -70,6 +71,7 @@ namespace Projeto_Pet_shop
                         finally
                         {
                             conexao.Close();
+                            MessageBox.Show("Produto cadastrado com sucesso!");
                             textBoxDESCPRODUTO.Clear();
                             textBoxCATPRODUTO.Clear();
                             textBoxVALORPRODUTO.Clear();
@@ -91,20 +93,19 @@ namespace Projeto_Pet_shop
         {
             try
             {
+                conexao.Open();
                 comando.CommandText = "DELETE FROM produtos WHERE id = " + textBoxID.Text + ";";
                 comando.ExecuteNonQuery();
                 MessageBox.Show("Registro exluído com sucesso");
             }
             catch (Exception erro)
             {
-                MessageBox.Show("O registro não foi excluido verifique o ID do produto");
+                MessageBox.Show("O produto não foi excluido, verifique o ID do produto!");
             }
             finally
             {
                 conexao.Close();
-                textBoxDESCPRODUTO.Clear();
-                textBoxCATPRODUTO.Clear();
-                textBoxVALORPRODUTO.Clear();
+                textBoxID.Clear();
             }
         }
     }
