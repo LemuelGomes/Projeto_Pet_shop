@@ -96,7 +96,7 @@ namespace Projeto_Pet_shop
                 conexao.Open();
                 comando.CommandText = "DELETE FROM produtos WHERE id = " + textBoxID.Text + ";";
                 comando.ExecuteNonQuery();
-                MessageBox.Show("Registro exluído com sucesso");
+                MessageBox.Show("Registro exluído com sucesso!");
             }
             catch (Exception erro)
             {
@@ -107,6 +107,37 @@ namespace Projeto_Pet_shop
                 conexao.Close();
                 textBoxID.Clear();
             }
+        }
+
+        private void buttonATUALIZAR_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                conexao.Open();
+                comando.CommandText = "SELECT * FROM produtos;";
+                MySqlDataAdapter adaptadorProdutos = new MySqlDataAdapter(comando);
+                DataTable tabelaProdutos = new DataTable();
+                adaptadorProdutos.Fill(tabelaProdutos);
+                dataGridViewPRODUTOS.DataSource = tabelaProdutos;
+                dataGridViewPRODUTOS.Columns["id"].HeaderText = "Código";
+                dataGridViewPRODUTOS.Columns["descricao_produto"].HeaderText = "Descrição";
+                dataGridViewPRODUTOS.Columns["categoria_produto"].HeaderText = "Categoria";
+                dataGridViewPRODUTOS.Columns["valor_produto"].HeaderText = "Preço";
+                MessageBox.Show("Sua lista de produtos foi atualizada com sucesso!");
+            }
+            catch
+            {
+                MessageBox.Show("Não conseguimos atualizar sua lista de produtos, fale com o administrador do sistema!");
+            }
+            finally
+            {
+                conexao.Close();
+            }
+        }       
+
+        private void dataGridViewPRODUTOS_MouseClick(object sender, MouseEventArgs e)
+        {
+            textBoxID.Text = dataGridViewPRODUTOS.CurrentRow.Cells[0].Value.ToString();
         }
     }
 }

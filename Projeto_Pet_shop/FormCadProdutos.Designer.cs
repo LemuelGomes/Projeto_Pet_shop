@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCadProdutos));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,6 +42,9 @@
             this.buttonEXCLUIR = new System.Windows.Forms.Button();
             this.textBoxID = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.dataGridViewPRODUTOS = new System.Windows.Forms.DataGridView();
+            this.buttonATUALIZAR = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPRODUTOS)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -51,7 +55,7 @@
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(-5, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(726, 43);
             this.label1.TabIndex = 0;
@@ -78,7 +82,7 @@
             this.textBoxDESCPRODUTO.Location = new System.Drawing.Point(10, 150);
             this.textBoxDESCPRODUTO.Multiline = true;
             this.textBoxDESCPRODUTO.Name = "textBoxDESCPRODUTO";
-            this.textBoxDESCPRODUTO.Size = new System.Drawing.Size(598, 56);
+            this.textBoxDESCPRODUTO.Size = new System.Drawing.Size(331, 78);
             this.textBoxDESCPRODUTO.TabIndex = 2;
             // 
             // textBoxCATPRODUTO
@@ -88,7 +92,7 @@
             this.textBoxCATPRODUTO.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxCATPRODUTO.Location = new System.Drawing.Point(10, 275);
             this.textBoxCATPRODUTO.Name = "textBoxCATPRODUTO";
-            this.textBoxCATPRODUTO.Size = new System.Drawing.Size(598, 29);
+            this.textBoxCATPRODUTO.Size = new System.Drawing.Size(331, 29);
             this.textBoxCATPRODUTO.TabIndex = 3;
             // 
             // label3
@@ -151,7 +155,7 @@
             this.buttonFECHAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonFECHAR.ForeColor = System.Drawing.Color.SteelBlue;
             this.buttonFECHAR.Image = global::Projeto_Pet_shop.Properties.Resources.sair_button;
-            this.buttonFECHAR.Location = new System.Drawing.Point(641, 460);
+            this.buttonFECHAR.Location = new System.Drawing.Point(741, 453);
             this.buttonFECHAR.Name = "buttonFECHAR";
             this.buttonFECHAR.Size = new System.Drawing.Size(97, 37);
             this.buttonFECHAR.TabIndex = 8;
@@ -198,13 +202,43 @@
             this.label5.Text = "ID que deseja excluir";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // dataGridViewPRODUTOS
+            // 
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridViewPRODUTOS.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewPRODUTOS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPRODUTOS.Location = new System.Drawing.Point(390, 91);
+            this.dataGridViewPRODUTOS.Name = "dataGridViewPRODUTOS";
+            this.dataGridViewPRODUTOS.Size = new System.Drawing.Size(448, 213);
+            this.dataGridViewPRODUTOS.TabIndex = 12;   
+            this.dataGridViewPRODUTOS.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewPRODUTOS_MouseClick);
+            // 
+            // buttonATUALIZAR
+            // 
+            this.buttonATUALIZAR.BackColor = System.Drawing.Color.White;
+            this.buttonATUALIZAR.FlatAppearance.BorderSize = 0;
+            this.buttonATUALIZAR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonATUALIZAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonATUALIZAR.ForeColor = System.Drawing.Color.SteelBlue;
+            this.buttonATUALIZAR.Image = global::Projeto_Pet_shop.Properties.Resources.setas_circulares;
+            this.buttonATUALIZAR.Location = new System.Drawing.Point(627, 310);
+            this.buttonATUALIZAR.Name = "buttonATUALIZAR";
+            this.buttonATUALIZAR.Size = new System.Drawing.Size(211, 37);
+            this.buttonATUALIZAR.TabIndex = 13;
+            this.buttonATUALIZAR.Text = "Atualizar lista de Produtos";
+            this.buttonATUALIZAR.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonATUALIZAR.UseVisualStyleBackColor = false;
+            this.buttonATUALIZAR.Click += new System.EventHandler(this.buttonATUALIZAR_Click);
+            // 
             // FormCadProdutos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Projeto_Pet_shop.Properties.Resources._17545;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(750, 509);
+            this.ClientSize = new System.Drawing.Size(850, 502);
+            this.Controls.Add(this.buttonATUALIZAR);
+            this.Controls.Add(this.dataGridViewPRODUTOS);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBoxID);
             this.Controls.Add(this.buttonEXCLUIR);
@@ -220,6 +254,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormCadProdutos";
             this.Text = "Cadastro de Produtos";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPRODUTOS)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -239,5 +274,7 @@
         private System.Windows.Forms.Button buttonEXCLUIR;
         private System.Windows.Forms.TextBox textBoxID;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridView dataGridViewPRODUTOS;
+        private System.Windows.Forms.Button buttonATUALIZAR;
     }
 }
