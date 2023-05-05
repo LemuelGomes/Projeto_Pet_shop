@@ -44,6 +44,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridViewPRODUTOS = new System.Windows.Forms.DataGridView();
             this.buttonATUALIZAR = new System.Windows.Forms.Button();
+            this.buttonATUALIZARL = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPRODUTOS)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,11 +115,11 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.White;
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label4.Location = new System.Drawing.Point(12, 350);
+            this.label4.Location = new System.Drawing.Point(12, 352);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(194, 29);
+            this.label4.Size = new System.Drawing.Size(173, 25);
             this.label4.TabIndex = 5;
             this.label4.Text = "Valor do Produto";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -127,9 +128,9 @@
             // 
             this.textBoxVALORPRODUTO.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxVALORPRODUTO.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxVALORPRODUTO.Location = new System.Drawing.Point(12, 384);
+            this.textBoxVALORPRODUTO.Location = new System.Drawing.Point(10, 384);
             this.textBoxVALORPRODUTO.Name = "textBoxVALORPRODUTO";
-            this.textBoxVALORPRODUTO.Size = new System.Drawing.Size(216, 29);
+            this.textBoxVALORPRODUTO.Size = new System.Drawing.Size(175, 29);
             this.textBoxVALORPRODUTO.TabIndex = 6;
             // 
             // buttonCadProd
@@ -138,9 +139,9 @@
             this.buttonCadProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCadProd.ForeColor = System.Drawing.Color.SteelBlue;
             this.buttonCadProd.Image = global::Projeto_Pet_shop.Properties.Resources.salvar_buttom;
-            this.buttonCadProd.Location = new System.Drawing.Point(17, 446);
+            this.buttonCadProd.Location = new System.Drawing.Point(9, 446);
             this.buttonCadProd.Name = "buttonCadProd";
-            this.buttonCadProd.Size = new System.Drawing.Size(211, 41);
+            this.buttonCadProd.Size = new System.Drawing.Size(197, 41);
             this.buttonCadProd.TabIndex = 7;
             this.buttonCadProd.Text = "Cadastrar Produto";
             this.buttonCadProd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -170,9 +171,9 @@
             this.buttonEXCLUIR.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonEXCLUIR.ForeColor = System.Drawing.Color.SteelBlue;
             this.buttonEXCLUIR.Image = global::Projeto_Pet_shop.Properties.Resources.excluir__1_;
-            this.buttonEXCLUIR.Location = new System.Drawing.Point(260, 446);
+            this.buttonEXCLUIR.Location = new System.Drawing.Point(244, 446);
             this.buttonEXCLUIR.Name = "buttonEXCLUIR";
-            this.buttonEXCLUIR.Size = new System.Drawing.Size(211, 41);
+            this.buttonEXCLUIR.Size = new System.Drawing.Size(172, 41);
             this.buttonEXCLUIR.TabIndex = 9;
             this.buttonEXCLUIR.Text = "Excluir Produto";
             this.buttonEXCLUIR.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -183,9 +184,9 @@
             // 
             this.textBoxID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxID.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxID.Location = new System.Drawing.Point(260, 384);
+            this.textBoxID.Location = new System.Drawing.Point(313, 380);
             this.textBoxID.Name = "textBoxID";
-            this.textBoxID.Size = new System.Drawing.Size(216, 29);
+            this.textBoxID.Size = new System.Drawing.Size(172, 29);
             this.textBoxID.TabIndex = 10;
             // 
             // label5
@@ -195,11 +196,11 @@
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label5.Location = new System.Drawing.Point(263, 353);
+            this.label5.Location = new System.Drawing.Point(384, 352);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(213, 25);
+            this.label5.Size = new System.Drawing.Size(32, 25);
             this.label5.TabIndex = 11;
-            this.label5.Text = "ID que deseja excluir";
+            this.label5.Text = "ID";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dataGridViewPRODUTOS
@@ -210,7 +211,8 @@
             this.dataGridViewPRODUTOS.Location = new System.Drawing.Point(390, 91);
             this.dataGridViewPRODUTOS.Name = "dataGridViewPRODUTOS";
             this.dataGridViewPRODUTOS.Size = new System.Drawing.Size(448, 213);
-            this.dataGridViewPRODUTOS.TabIndex = 12;   
+            this.dataGridViewPRODUTOS.TabIndex = 12;
+            this.dataGridViewPRODUTOS.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPRODUTOS_CellEndEdit);
             this.dataGridViewPRODUTOS.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridViewPRODUTOS_MouseClick);
             // 
             // buttonATUALIZAR
@@ -230,6 +232,21 @@
             this.buttonATUALIZAR.UseVisualStyleBackColor = false;
             this.buttonATUALIZAR.Click += new System.EventHandler(this.buttonATUALIZAR_Click);
             // 
+            // buttonATUALIZARL
+            // 
+            this.buttonATUALIZARL.BackColor = System.Drawing.Color.White;
+            this.buttonATUALIZARL.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonATUALIZARL.ForeColor = System.Drawing.Color.SteelBlue;
+            this.buttonATUALIZARL.Image = global::Projeto_Pet_shop.Properties.Resources.setas_circulares;
+            this.buttonATUALIZARL.Location = new System.Drawing.Point(451, 446);
+            this.buttonATUALIZARL.Name = "buttonATUALIZARL";
+            this.buttonATUALIZARL.Size = new System.Drawing.Size(113, 41);
+            this.buttonATUALIZARL.TabIndex = 14;
+            this.buttonATUALIZARL.Text = "Atualizar";
+            this.buttonATUALIZARL.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonATUALIZARL.UseVisualStyleBackColor = false;
+            this.buttonATUALIZARL.Click += new System.EventHandler(this.buttonATUALIZARL_Click);
+            // 
             // FormCadProdutos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -237,6 +254,7 @@
             this.BackgroundImage = global::Projeto_Pet_shop.Properties.Resources._17545;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(850, 502);
+            this.Controls.Add(this.buttonATUALIZARL);
             this.Controls.Add(this.buttonATUALIZAR);
             this.Controls.Add(this.dataGridViewPRODUTOS);
             this.Controls.Add(this.label5);
@@ -276,5 +294,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView dataGridViewPRODUTOS;
         private System.Windows.Forms.Button buttonATUALIZAR;
+        private System.Windows.Forms.Button buttonATUALIZARL;
     }
 }
