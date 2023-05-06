@@ -121,7 +121,7 @@ namespace Projeto_Pet_shop
                 conexao.Open();
                 comando.CommandText = "DELETE FROM produtos WHERE id = " + textBoxID.Text + ";";
                 comando.ExecuteNonQuery();
-                MessageBox.Show("Registro exluído com sucesso!");
+                MessageBox.Show("Produto exluído com sucesso!");
             }
             catch (Exception erro)
             {
@@ -131,6 +131,9 @@ namespace Projeto_Pet_shop
             {
                 conexao.Close();
                 textBoxID.Clear();
+                textBoxDESCPRODUTO.Clear();
+                textBoxCATPRODUTO.Clear();
+                textBoxVALORPRODUTO.Clear();
             }
             atualizar_dataGRID();
         }
@@ -212,4 +215,3 @@ namespace Projeto_Pet_shop
         }
     }
 }
-
