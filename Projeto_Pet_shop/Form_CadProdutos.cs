@@ -11,13 +11,13 @@ using System.Windows.Forms;
 
 namespace Projeto_Pet_shop
 {
-    public partial class FormCadProdutos : Form
+    public partial class Form_CadProdutos : Form
     {
         string servidor;
         MySqlConnection conexao;
         MySqlCommand comando;
 
-        public FormCadProdutos()
+        public Form_CadProdutos()
         {
             InitializeComponent();
 

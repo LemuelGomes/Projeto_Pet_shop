@@ -1,6 +1,6 @@
 ﻿namespace Projeto_Pet_shop
 {
-    partial class FormLogin
+    partial class Form_Login
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Login));
             this.buttonENTRAR = new System.Windows.Forms.Button();
             this.buttonLIMPAR = new System.Windows.Forms.Button();
-            this.buttonCADASTRAR = new System.Windows.Forms.Button();
             this.textBoxUSUARIO = new System.Windows.Forms.TextBox();
             this.textBoxSENHA = new System.Windows.Forms.TextBox();
             this.labelUSUARIO = new System.Windows.Forms.Label();
@@ -47,7 +46,7 @@
             this.buttonENTRAR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonENTRAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonENTRAR.ForeColor = System.Drawing.Color.White;
-            this.buttonENTRAR.Location = new System.Drawing.Point(12, 425);
+            this.buttonENTRAR.Location = new System.Drawing.Point(12, 455);
             this.buttonENTRAR.Name = "buttonENTRAR";
             this.buttonENTRAR.Size = new System.Drawing.Size(83, 36);
             this.buttonENTRAR.TabIndex = 0;
@@ -69,21 +68,6 @@
             this.buttonLIMPAR.Text = "Limpar";
             this.buttonLIMPAR.UseVisualStyleBackColor = false;
             this.buttonLIMPAR.Click += new System.EventHandler(this.buttonLIMPAR_Click);
-            // 
-            // buttonCADASTRAR
-            // 
-            this.buttonCADASTRAR.BackColor = System.Drawing.Color.DarkBlue;
-            this.buttonCADASTRAR.FlatAppearance.BorderSize = 0;
-            this.buttonCADASTRAR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCADASTRAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCADASTRAR.ForeColor = System.Drawing.Color.White;
-            this.buttonCADASTRAR.Location = new System.Drawing.Point(12, 486);
-            this.buttonCADASTRAR.Name = "buttonCADASTRAR";
-            this.buttonCADASTRAR.Size = new System.Drawing.Size(83, 36);
-            this.buttonCADASTRAR.TabIndex = 2;
-            this.buttonCADASTRAR.Text = "Cadastrar";
-            this.buttonCADASTRAR.UseVisualStyleBackColor = false;
-            this.buttonCADASTRAR.Click += new System.EventHandler(this.buttonCADASTRAR_Click);
             // 
             // textBoxUSUARIO
             // 
@@ -155,7 +139,7 @@
             this.buttonFECHAR.UseVisualStyleBackColor = false;
             this.buttonFECHAR.Click += new System.EventHandler(this.buttonFECHAR_Click);
             // 
-            // FormLogin
+            // Form_Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -168,12 +152,11 @@
             this.Controls.Add(this.labelUSUARIO);
             this.Controls.Add(this.textBoxSENHA);
             this.Controls.Add(this.textBoxUSUARIO);
-            this.Controls.Add(this.buttonCADASTRAR);
             this.Controls.Add(this.buttonLIMPAR);
             this.Controls.Add(this.buttonENTRAR);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FormLogin";
+            this.Name = "Form_Login";
             this.Text = "Pet_Shop";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -184,7 +167,6 @@
 
         private System.Windows.Forms.Button buttonENTRAR;
         private System.Windows.Forms.Button buttonLIMPAR;
-        private System.Windows.Forms.Button buttonCADASTRAR;
         private System.Windows.Forms.TextBox textBoxUSUARIO;
         private System.Windows.Forms.TextBox textBoxSENHA;
         private System.Windows.Forms.Label labelUSUARIO;
