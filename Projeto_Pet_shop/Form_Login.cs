@@ -18,6 +18,7 @@ namespace Projeto_Pet_shop
         public Form_Login()
         {
             InitializeComponent();
+            this.FormClosing += Form_Login_FormClosing;
             labelERRO.Text = "";
         }
 
@@ -34,8 +35,11 @@ namespace Projeto_Pet_shop
 
                     if (resultadoPesquisa.Read())
                     {
-                        Form_Gerenciamento gerenciamento = new Form_Gerenciamento();
-                        gerenciamento.ShowDialog();
+                        ClassMYSQL.conexao.Close();
+                        this.Hide();
+                        Form_Gerenciamento Form_Login = new Form_Gerenciamento();
+                        Form_Login.ShowDialog();
+                        this.Close();                      
                     }
                     else
                     {
@@ -65,11 +69,9 @@ namespace Projeto_Pet_shop
             labelERRO.Text = "";
         }
 
-        
-
-        private void buttonFECHAR_Click(object sender, EventArgs e)
+        private void Form_Login_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            //Fecha a aplicação.
         }
     }
 }

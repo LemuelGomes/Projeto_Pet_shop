@@ -152,6 +152,7 @@
             this.cadastrarColaboradorToolStripMenuItem1.Name = "cadastrarColaboradorToolStripMenuItem1";
             this.cadastrarColaboradorToolStripMenuItem1.Size = new System.Drawing.Size(293, 22);
             this.cadastrarColaboradorToolStripMenuItem1.Text = "Cadastrar Colaborador";
+            this.cadastrarColaboradorToolStripMenuItem1.Click += new System.EventHandler(this.cadastrarColaboradorToolStripMenuItem1_Click);
             // 
             // cadastrarProdutosToolStripMenuItem1
             // 
@@ -159,6 +160,7 @@
             this.cadastrarProdutosToolStripMenuItem1.Name = "cadastrarProdutosToolStripMenuItem1";
             this.cadastrarProdutosToolStripMenuItem1.Size = new System.Drawing.Size(293, 22);
             this.cadastrarProdutosToolStripMenuItem1.Text = "Cadastrar Produtos";
+            this.cadastrarProdutosToolStripMenuItem1.Click += new System.EventHandler(this.cadastrarProdutosToolStripMenuItem1_Click);
             // 
             // alterarSenhaColaboradorToolStripMenuItem
             // 
@@ -166,6 +168,7 @@
             this.alterarSenhaColaboradorToolStripMenuItem.Name = "alterarSenhaColaboradorToolStripMenuItem";
             this.alterarSenhaColaboradorToolStripMenuItem.Size = new System.Drawing.Size(293, 22);
             this.alterarSenhaColaboradorToolStripMenuItem.Text = "Alterar Senha Colaborador";
+            this.alterarSenhaColaboradorToolStripMenuItem.Click += new System.EventHandler(this.alterarSenhaColaboradorToolStripMenuItem_Click_1);
             // 
             // consultasToolStripMenuItem1
             // 
@@ -182,6 +185,7 @@
             this.relatórioToolStripMenuItem1.Name = "relatórioToolStripMenuItem1";
             this.relatórioToolStripMenuItem1.Size = new System.Drawing.Size(235, 22);
             this.relatórioToolStripMenuItem1.Text = "Relatório";
+            this.relatórioToolStripMenuItem1.Click += new System.EventHandler(this.relatórioToolStripMenuItem1_Click);
             // 
             // gestãoDePessoasToolStripMenuItem1
             // 
@@ -189,28 +193,32 @@
             this.gestãoDePessoasToolStripMenuItem1.Name = "gestãoDePessoasToolStripMenuItem1";
             this.gestãoDePessoasToolStripMenuItem1.Size = new System.Drawing.Size(235, 22);
             this.gestãoDePessoasToolStripMenuItem1.Text = "Gestão de Pessoas";
+            this.gestãoDePessoasToolStripMenuItem1.Click += new System.EventHandler(this.gestãoDePessoasToolStripMenuItem1_Click);
             // 
             // suporteToolStripMenuItem
             // 
             this.suporteToolStripMenuItem.Name = "suporteToolStripMenuItem";
             this.suporteToolStripMenuItem.Size = new System.Drawing.Size(97, 27);
             this.suporteToolStripMenuItem.Text = "Suporte";
+            this.suporteToolStripMenuItem.Click += new System.EventHandler(this.suporteToolStripMenuItem_Click);
             // 
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
             this.sairToolStripMenuItem.Size = new System.Drawing.Size(60, 27);
             this.sairToolStripMenuItem.Text = "Sair";
+            this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click_1);
             // 
-            // Form_Menu
+            // Form_Gerenciamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 511);
             this.Controls.Add(this.Cadastro_StripMenu);
             this.MainMenuStrip = this.Cadastro_StripMenu;
-            this.Name = "Form_Menu";
+            this.Name = "Form_Gerenciamento";
             this.Text = "Gerenciamento Pet-Shop";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Gerenciamento_FormClosing);
             this.Cadastrar.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.cadastro_MenuStripMenuItem.ResumeLayout(false);

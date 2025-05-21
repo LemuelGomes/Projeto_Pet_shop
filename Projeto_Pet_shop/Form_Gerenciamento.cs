@@ -15,6 +15,7 @@ namespace Projeto_Pet_shop
         public Form_Gerenciamento()
         {
             InitializeComponent();
+            this.FormClosing += Form_Gerenciamento_FormClosing;
         }
         private void cadastrarColaboradorToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -79,6 +80,73 @@ namespace Projeto_Pet_shop
             Form_Suporte FormGerenciamento = new Form_Suporte();
             FormGerenciamento.Closed += (s, args) => this.Close();
             FormGerenciamento.Show();
+        }
+
+        private void cadastrarColaboradorToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form_CadColaborador Form_Gerenciamento = new Form_CadColaborador();
+            Form_Gerenciamento.ShowDialog();
+            this.Close();
+        }
+
+        private void cadastrarProdutosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form_CadProdutos Form_Gerenciamento = new Form_CadProdutos();
+            Form_Gerenciamento.ShowDialog();
+            this.Close();
+        }
+
+        private void alterarSenhaColaboradorToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form_AlterarSenha Form_Gerenciamento = new Form_AlterarSenha();
+            Form_Gerenciamento.ShowDialog();
+            this.Close();
+        }
+
+        private void relatórioToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form_Relatorio Form_Gerenciamento = new Form_Relatorio();
+            Form_Gerenciamento.ShowDialog();
+            this.Close();
+        }
+
+        private void gestãoDePessoasToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form_GestaodePessoas Form_Gerenciamento = new Form_GestaodePessoas();
+            Form_Gerenciamento.ShowDialog();
+            this.Close();
+        }
+
+        private void suporteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form_Suporte Form_Gerenciamento = new Form_Suporte();
+            Form_Gerenciamento.ShowDialog();
+            this.Close();
+        }
+
+        private void sairToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form_Login Form_Gerenciamento = new Form_Login();
+            Form_Gerenciamento.ShowDialog();
+            this.Close();
+        }
+
+        private void Form_Gerenciamento_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                this.Hide();
+                Form_Login Form_Gerenciamento = new Form_Login();
+                Form_Gerenciamento.ShowDialog();
+                this.Close();
+            }
         }
     }
 }

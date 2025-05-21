@@ -168,6 +168,12 @@
     <Compile Include="Form_Suporte.Designer.cs">
       <DependentUpon>Form_Suporte.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_Venda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Venda.Designer.cs">
+      <DependentUpon>Form_Venda.cs</DependentUpon>
+    </Compile>
     <Compile Include="MYSQL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -194,6 +200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Suporte.resx">
       <DependentUpon>Form_Suporte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Venda.resx">
+      <DependentUpon>Form_Venda.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
