@@ -13,34 +13,27 @@ namespace Projeto_Pet_shop
 {
     public partial class Form_CadProdutos : Form
     {
-        string servidor;
-        MySqlConnection conexao;
-        MySqlCommand comando;
-
         public Form_CadProdutos()
         {
             InitializeComponent();
 
-            textBoxID.Enabled = false;
-            servidor = "Server=localhost;Database=loja_pet_shop;Uid=root;Pwd=";
-            conexao = new MySqlConnection(servidor);
-            comando = conexao.CreateCommand();
             atualizar_dataGRID();
         }
         private void atualizar_dataGRID()
         {
             try
             {
-                conexao.Open();
-                comando.CommandText = "SELECT * FROM produtos;";
-                MySqlDataAdapter adaptadorProdutos = new MySqlDataAdapter(comando);
+                ClassMYSQL.conexao.Open();
+                ClassMYSQL.comando.CommandText = "SELECT descricao_produto, categoria_produto, quantidade_produto, preco_custo, preco_produto FROM tbl_produtos;";
+                MySqlDataAdapter adaptadorProdutos = new MySqlDataAdapter(ClassMYSQL.comando);
                 DataTable tabelaProdutos = new DataTable();
                 adaptadorProdutos.Fill(tabelaProdutos);
                 dataGridViewPRODUTOS.DataSource = tabelaProdutos;
-                dataGridViewPRODUTOS.Columns["id"].HeaderText = "Código";
                 dataGridViewPRODUTOS.Columns["descricao_produto"].HeaderText = "Descrição";
                 dataGridViewPRODUTOS.Columns["categoria_produto"].HeaderText = "Categoria";
-                dataGridViewPRODUTOS.Columns["valor_produto"].HeaderText = "Preço";                
+                dataGridViewPRODUTOS.Columns["quantidade_produto"].HeaderText = "Estoque";
+                dataGridViewPRODUTOS.Columns["preco_custo"].HeaderText = "Preço de Custo";
+                dataGridViewPRODUTOS.Columns["preco_produto"].HeaderText = "Preço do Produto";
             }
             catch
             {
@@ -48,169 +41,142 @@ namespace Projeto_Pet_shop
             }
             finally
             {
-                conexao.Close();
+                ClassMYSQL.conexao.Close();
             }
         }
-        private void buttonCadProd_Click(object sender, EventArgs e)
+        private void button_CadProduto_Click(object sender, EventArgs e)
         {
-            bool novoProduto = true;
-
-            if (textBoxDESCPRODUTO.Text != "" && textBoxCATPRODUTO.Text != "")
+            if (textBox_Descricao.Text == "" ||
+                textBox_Categoria.Text == "" ||
+                textBox_Quantidade.Text == "" ||
+                textBox_PrecoCusto.Text == "" ||
+                textBox_PrecoVenda.Text == "")
             {
-                if (novoProduto)
-                {
-                    try
-                    {
-                        conexao.Open();
-                        comando.CommandText = "SELECT descricao_produto FROM produtos WHERE descricao_produto = '" + textBoxDESCPRODUTO.Text + "';";
-
-                        MySqlDataReader resultado = comando.ExecuteReader();
-
-                        if (resultado.Read())
-                        {
-                            novoProduto = false;
-                            MessageBox.Show("Produto já Cadastrado!!!");
-                        }
-                    }
-                    catch (Exception erro)
-                    {
-                        MessageBox.Show("Erro ao cadastrar o produto. Fale com o administrador do sistema.");
-                    }
-                    finally
-                    {
-                        conexao.Close();
-                    }
-                    atualizar_dataGRID();
-
-                    if (novoProduto == true && textBoxDESCPRODUTO.Text != "" && textBoxVALORPRODUTO.Text != "")
-                    {
-                        try
-                        {
-                            conexao.Open();
-                            comando.CommandText = "INSERT INTO produtos (descricao_produto, categoria_produto, valor_produto) VALUES ('" + textBoxDESCPRODUTO.Text + "', '" + textBoxCATPRODUTO.Text + "', '" + textBoxVALORPRODUTO.Text.Replace(",", ".") + "');";
-                            comando.ExecuteNonQuery();
-                        }
-                        catch (Exception erro)
-                        {
-                            MessageBox.Show("Seu produto não foi cadastrado verifique com o administrador do sistema");
-                        }
-                        finally
-                        {
-                            conexao.Close();
-                            MessageBox.Show("Produto cadastrado com sucesso!");
-                            textBoxDESCPRODUTO.Clear();
-                            textBoxCATPRODUTO.Clear();
-                            textBoxVALORPRODUTO.Clear();
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Algum campo não está preenchido!");
-                    }
-                }
+                MessageBox.Show("Preencha todos os campos obrigatórios.");
+                return;
             }
-        }
-        private void buttonFECHAR_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-        private void buttonEXCLUIR_Click(object sender, EventArgs e)
-        {
+
             try
             {
-                conexao.Open();
-                comando.CommandText = "DELETE FROM produtos WHERE id = " + textBoxID.Text + ";";
-                comando.ExecuteNonQuery();
-                MessageBox.Show("Produto exluído com sucesso!");
+                if (ClassMYSQL.conexao.State != ConnectionState.Open)
+                    ClassMYSQL.conexao.Open();
+
+                ClassMYSQL.comando.CommandText =
+                    "INSERT INTO tbl_produtos " +
+                    "(descricao_produto, categoria_produto, quantidade_produto, preco_custo, preco_produto, fk_colaborador, fk_pagamento) " +
+                    "VALUES (" +
+                       " '" + textBox_Descricao.Text + "'," +
+                       " '" + textBox_Categoria.Text + "'," +
+                         textBox_Quantidade.Text + "," +
+                         textBox_PrecoCusto.Text.Replace(',', '.') + "," +
+                         textBox_PrecoVenda.Text.Replace(',', '.') + "," +
+                         Sessao.IdColaborador + "," +
+                         " NULL" +
+                    ");";
+    
+                ClassMYSQL.comando.ExecuteNonQuery();
+                MessageBox.Show("Produto cadastrado com sucesso!");
+
+                textBox_Descricao.Clear();
+                textBox_Categoria.Clear();
+                textBox_PrecoCusto.Clear();
+                textBox_PrecoVenda.Clear();
+                textBox_Quantidade.Clear();
             }
             catch (Exception erro)
             {
-                MessageBox.Show("O produto não foi excluido, verifique o ID do produto!");
+                MessageBox.Show("Erro ao cadastrar produto: " + erro.Message);
             }
             finally
             {
-                conexao.Close();
-                textBoxID.Clear();
-                textBoxDESCPRODUTO.Clear();
-                textBoxCATPRODUTO.Clear();
-                textBoxVALORPRODUTO.Clear();
+                if (ClassMYSQL.conexao.State == ConnectionState.Open)
+                    ClassMYSQL.conexao.Close();
             }
             atualizar_dataGRID();
         }
-        private void buttonATUALIZAR_Click(object sender, EventArgs e)
+        private void buttonFECHAR_Click(object sender, EventArgs e)
         {
+            this.Hide();
+            Form_Gerenciamento Form_CadProdutos = new Form_Gerenciamento();
+            Form_CadProdutos.ShowDialog();
+            this.Close();
+        }
+
+        private void button_AtualizarLista_Click(object sender, EventArgs e)
+        {
+            atualizar_dataGRID();
+            MessageBox.Show("A lista de produtos foi atualizada!");
+        }
+
+        private void button_ExcluirProd_Click(object sender, EventArgs e)
+        {
+            if (textBox_Descricao.Text == "")
+            {
+                MessageBox.Show("Digite a descrição do produto para buscar.");
+                return;
+            }
+
             try
             {
-                conexao.Open();
-                comando.CommandText = "SELECT * FROM produtos;";
-                MySqlDataAdapter adaptadorProdutos = new MySqlDataAdapter(comando);
-                DataTable tabelaProdutos = new DataTable();
-                adaptadorProdutos.Fill(tabelaProdutos);
-                dataGridViewPRODUTOS.DataSource = tabelaProdutos;
-                dataGridViewPRODUTOS.Columns["id"].HeaderText = "Código";
-                dataGridViewPRODUTOS.Columns["descricao_produto"].HeaderText = "Descrição";
-                dataGridViewPRODUTOS.Columns["categoria_produto"].HeaderText = "Categoria";
-                dataGridViewPRODUTOS.Columns["valor_produto"].HeaderText = "Preço";
-                MessageBox.Show("Sua lista de produtos foi atualizada com sucesso!");
-            }
-            catch
-            {
-                MessageBox.Show("Não conseguimos atualizar sua lista de produtos, fale com o administrador do sistema!");
-            }
-            finally
-            {
-                conexao.Close();
-            }
-        }
-        private void dataGridViewPRODUTOS_MouseClick(object sender, MouseEventArgs e)
-        {
-            textBoxID.Text = dataGridViewPRODUTOS.CurrentRow.Cells[0].Value.ToString();
-            textBoxDESCPRODUTO.Text = dataGridViewPRODUTOS.CurrentRow.Cells[1].Value.ToString();
-            textBoxCATPRODUTO.Text = dataGridViewPRODUTOS.CurrentRow.Cells[2].Value.ToString();
-            textBoxVALORPRODUTO.Text = dataGridViewPRODUTOS.CurrentRow.Cells[3].Value.ToString().Replace(".", ",");
-        }
-        private void buttonATUALIZARL_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                conexao.Open();
-                comando.CommandText = "UPDATE produtos SET descricao_produto = '" + textBoxDESCPRODUTO.Text + "', categoria_produto = '" + textBoxCATPRODUTO.Text + "', valor_produto = '" + textBoxVALORPRODUTO.Text.Replace(",", ".") + "' WHERE id = '" + textBoxID.Text + "';";
-                comando.ExecuteNonQuery();
+                if (ClassMYSQL.conexao.State != ConnectionState.Open)
+                    ClassMYSQL.conexao.Open();
+
+                ClassMYSQL.comando.CommandText =
+                    "SELECT id, categoria_produto, quantidade_produto, preco_custo, preco_produto" +
+                    "FROM tbl_produtos " +
+                    "WHERE descricao_produto = '" + textBox_Descricao.Text + "';";
+                MySqlDataReader leitor = ClassMYSQL.comando.ExecuteReader();
+
+                int idProduto = 0;
+                if (leitor.Read())
+                {
+                    idProduto = leitor.GetInt32("id");
+                    textBox_Categoria.Text = leitor.GetString("categoria_produto");
+                    textBox_Quantidade.Text = leitor.GetInt32("quantidade_produto").ToString();
+                    textBox_PrecoCusto.Text = leitor.GetDecimal("preco_custo").ToString();
+                    textBox_PrecoVenda.Text = leitor.GetDecimal("preco_produto").ToString();
+                }
+                else
+                {
+                    leitor.Close();
+                    MessageBox.Show("Produto não encontrado.");
+                    return;
+                }
+                leitor.Close();
+
+                atualizar_dataGRID();
+
+                DialogResult resp = MessageBox.Show(
+                    "Deseja realmente excluir este produto?",
+                    "Confirmar exclusão",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (resp == DialogResult.Yes)
+                {
+                    ClassMYSQL.comando.CommandText =
+                        "DELETE FROM tbl_produtos WHERE id = " + idProduto + ";";
+                    ClassMYSQL.comando.ExecuteNonQuery();
+                    MessageBox.Show("Produto excluído com sucesso.");
+                }
+
+                textBox_Descricao.Clear();
+                textBox_Categoria.Clear();
+                textBox_Quantidade.Clear();
+                textBox_PrecoCusto.Clear();
+                textBox_PrecoVenda.Clear();
+
+                atualizar_dataGRID();
             }
             catch (Exception erro)
             {
-                MessageBox.Show("Seu produto não foi atualizado na lista! Verifique com o administrador!");
+                MessageBox.Show("Erro ao excluir produto: " + erro.Message);
             }
             finally
             {
-                conexao.Close();
-                MessageBox.Show("Seu produto foi atualizado na lista!");
-                textBoxDESCPRODUTO.Clear();
-                textBoxCATPRODUTO.Clear();
-                textBoxVALORPRODUTO.Clear();
-                textBoxID.Clear();
-            }
-        }
-        private void dataGridViewPRODUTOS_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                conexao.Open();
-                comando.CommandText = "UPDATE produtos SET descricao_produto = '" + dataGridViewPRODUTOS.CurrentRow.Cells[1].Value.ToString() + "', categoria_produto = '" + dataGridViewPRODUTOS.CurrentRow.Cells[2].Value.ToString() + "', valor_produto = '" + dataGridViewPRODUTOS.CurrentRow.Cells[3].Value.ToString().Replace(",", ".") + "' WHERE id = '" + textBoxID.Text + "';";
-                comando.ExecuteNonQuery();
-            }
-            catch (Exception erro)
-            {
-                MessageBox.Show("Seu produto não foi atualizado na lista! Verifique com o administrador!");
-            }
-            finally
-            {
-                conexao.Close();
-                MessageBox.Show("Seu produto foi atualizado na lista!");
-                textBoxDESCPRODUTO.Clear();
-                textBoxCATPRODUTO.Clear();
-                textBoxVALORPRODUTO.Clear();
-                textBoxID.Clear();
+                if (ClassMYSQL.conexao.State == ConnectionState.Open)
+                    ClassMYSQL.conexao.Close();
             }
         }
     }

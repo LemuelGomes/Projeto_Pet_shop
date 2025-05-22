@@ -29,61 +29,61 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Login));
-            this.buttonENTRAR = new System.Windows.Forms.Button();
-            this.buttonLIMPAR = new System.Windows.Forms.Button();
-            this.textBoxUSUARIO = new System.Windows.Forms.TextBox();
-            this.textBoxSENHA = new System.Windows.Forms.TextBox();
+            this.button_Entrar = new System.Windows.Forms.Button();
+            this.button_Limpar = new System.Windows.Forms.Button();
+            this.textBox_Usuario = new System.Windows.Forms.TextBox();
+            this.textBox_Senha = new System.Windows.Forms.TextBox();
             this.labelUSUARIO = new System.Windows.Forms.Label();
             this.labelSENHA = new System.Windows.Forms.Label();
             this.labelERRO = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // buttonENTRAR
+            // button_Entrar
             // 
-            this.buttonENTRAR.BackColor = System.Drawing.Color.Transparent;
-            this.buttonENTRAR.FlatAppearance.BorderSize = 0;
-            this.buttonENTRAR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonENTRAR.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonENTRAR.ForeColor = System.Drawing.Color.Lime;
-            this.buttonENTRAR.Location = new System.Drawing.Point(12, 511);
-            this.buttonENTRAR.Name = "buttonENTRAR";
-            this.buttonENTRAR.Size = new System.Drawing.Size(83, 36);
-            this.buttonENTRAR.TabIndex = 0;
-            this.buttonENTRAR.Text = "Entrar";
-            this.buttonENTRAR.UseVisualStyleBackColor = false;
-            this.buttonENTRAR.Click += new System.EventHandler(this.buttonENTRAR_Click);
+            this.button_Entrar.BackColor = System.Drawing.Color.Transparent;
+            this.button_Entrar.FlatAppearance.BorderSize = 0;
+            this.button_Entrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_Entrar.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Entrar.ForeColor = System.Drawing.Color.Lime;
+            this.button_Entrar.Location = new System.Drawing.Point(12, 511);
+            this.button_Entrar.Name = "button_Entrar";
+            this.button_Entrar.Size = new System.Drawing.Size(83, 36);
+            this.button_Entrar.TabIndex = 0;
+            this.button_Entrar.Text = "Entrar";
+            this.button_Entrar.UseVisualStyleBackColor = false;
+            this.button_Entrar.Click += new System.EventHandler(this.button_Entrar_Click);
             // 
-            // buttonLIMPAR
+            // button_Limpar
             // 
-            this.buttonLIMPAR.BackColor = System.Drawing.Color.Transparent;
-            this.buttonLIMPAR.FlatAppearance.BorderSize = 0;
-            this.buttonLIMPAR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonLIMPAR.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLIMPAR.ForeColor = System.Drawing.Color.Yellow;
-            this.buttonLIMPAR.Location = new System.Drawing.Point(460, 511);
-            this.buttonLIMPAR.Name = "buttonLIMPAR";
-            this.buttonLIMPAR.Size = new System.Drawing.Size(90, 36);
-            this.buttonLIMPAR.TabIndex = 1;
-            this.buttonLIMPAR.Text = "Limpar";
-            this.buttonLIMPAR.UseVisualStyleBackColor = false;
-            this.buttonLIMPAR.Click += new System.EventHandler(this.buttonLIMPAR_Click);
+            this.button_Limpar.BackColor = System.Drawing.Color.Transparent;
+            this.button_Limpar.FlatAppearance.BorderSize = 0;
+            this.button_Limpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_Limpar.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Limpar.ForeColor = System.Drawing.Color.Yellow;
+            this.button_Limpar.Location = new System.Drawing.Point(460, 511);
+            this.button_Limpar.Name = "button_Limpar";
+            this.button_Limpar.Size = new System.Drawing.Size(90, 36);
+            this.button_Limpar.TabIndex = 1;
+            this.button_Limpar.Text = "Limpar";
+            this.button_Limpar.UseVisualStyleBackColor = false;
+            this.button_Limpar.Click += new System.EventHandler(this.button_Limpar_Click);
             // 
-            // textBoxUSUARIO
+            // textBox_Usuario
             // 
-            this.textBoxUSUARIO.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxUSUARIO.Location = new System.Drawing.Point(179, 477);
-            this.textBoxUSUARIO.Name = "textBoxUSUARIO";
-            this.textBoxUSUARIO.Size = new System.Drawing.Size(215, 26);
-            this.textBoxUSUARIO.TabIndex = 3;
+            this.textBox_Usuario.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Usuario.Location = new System.Drawing.Point(179, 477);
+            this.textBox_Usuario.Name = "textBox_Usuario";
+            this.textBox_Usuario.Size = new System.Drawing.Size(215, 26);
+            this.textBox_Usuario.TabIndex = 3;
             // 
-            // textBoxSENHA
+            // textBox_Senha
             // 
-            this.textBoxSENHA.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxSENHA.Location = new System.Drawing.Point(182, 543);
-            this.textBoxSENHA.Name = "textBoxSENHA";
-            this.textBoxSENHA.PasswordChar = '●';
-            this.textBoxSENHA.Size = new System.Drawing.Size(212, 26);
-            this.textBoxSENHA.TabIndex = 4;
+            this.textBox_Senha.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Senha.Location = new System.Drawing.Point(182, 543);
+            this.textBox_Senha.Name = "textBox_Senha";
+            this.textBox_Senha.PasswordChar = '●';
+            this.textBox_Senha.Size = new System.Drawing.Size(212, 26);
+            this.textBox_Senha.TabIndex = 4;
             // 
             // labelUSUARIO
             // 
@@ -135,10 +135,10 @@
             this.Controls.Add(this.labelERRO);
             this.Controls.Add(this.labelSENHA);
             this.Controls.Add(this.labelUSUARIO);
-            this.Controls.Add(this.textBoxSENHA);
-            this.Controls.Add(this.textBoxUSUARIO);
-            this.Controls.Add(this.buttonLIMPAR);
-            this.Controls.Add(this.buttonENTRAR);
+            this.Controls.Add(this.textBox_Senha);
+            this.Controls.Add(this.textBox_Usuario);
+            this.Controls.Add(this.button_Limpar);
+            this.Controls.Add(this.button_Entrar);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_Login";
@@ -151,10 +151,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Button buttonENTRAR;
-        private System.Windows.Forms.Button buttonLIMPAR;
-        private System.Windows.Forms.TextBox textBoxUSUARIO;
-        private System.Windows.Forms.TextBox textBoxSENHA;
+        private System.Windows.Forms.Button button_Entrar;
+        private System.Windows.Forms.Button button_Limpar;
+        private System.Windows.Forms.TextBox textBox_Usuario;
+        private System.Windows.Forms.TextBox textBox_Senha;
         private System.Windows.Forms.Label labelUSUARIO;
         private System.Windows.Forms.Label labelSENHA;
         private System.Windows.Forms.Label labelERRO;

@@ -177,6 +177,7 @@
     <Compile Include="MYSQL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sessao.cs" />
     <EmbeddedResource Include="Form_CadColaborador.resx">
       <DependentUpon>Form_CadColaborador.cs</DependentUpon>
     </EmbeddedResource>

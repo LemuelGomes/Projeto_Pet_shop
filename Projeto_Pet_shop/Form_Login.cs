@@ -22,50 +22,77 @@ namespace Projeto_Pet_shop
             labelERRO.Text = "";
         }
 
-        private void buttonENTRAR_Click(object sender, EventArgs e)
+        private void button_Entrar_Click(object sender, EventArgs e)
         {
-            if (textBoxUSUARIO.Text != "" && textBoxSENHA.Text != "")
+            if (textBox_Usuario.Text == "" || textBox_Senha.Text == "")
             {
-                try
-                {
-                    ClassMYSQL.conexao.Open();
-                    ClassMYSQL.comando.CommandText = "SELECT email, senha FROM tbl_pessoa WHERE email = '" + textBoxUSUARIO.Text + "' AND senha = '" + textBoxSENHA.Text + "';";
-
-                    MySqlDataReader resultadoPesquisa = ClassMYSQL.comando.ExecuteReader();
-
-                    if (resultadoPesquisa.Read())
-                    {
-                        ClassMYSQL.conexao.Close();
-                        this.Hide();
-                        Form_Gerenciamento Form_Login = new Form_Gerenciamento();
-                        Form_Login.ShowDialog();
-                        this.Close();                      
-                    }
-                    else
-                    {
-                        labelERRO.Text = ("Usuário e/ou Senha Incorreto!");                        
-                        textBoxSENHA.Clear();
-                    }
-                }
-                catch (Exception erro)
-                {
-                    MessageBox.Show("Erro ao entrar com o usuário. Fale com o administrador do sistema.");
-                }
-                finally
-                {
-                    ClassMYSQL.conexao.Close();
-                }
+                MessageBox.Show("Verifique se você digitou o usuário e senha!");
+                return;
             }
-            else
+
+            try
             {
-                MessageBox.Show("Usuário e/ou Senha não inseridos!");
+                if (ClassMYSQL.conexao.State != ConnectionState.Open)
+                    ClassMYSQL.conexao.Open();
+
+                ClassMYSQL.comando.CommandText =
+                    "SELECT id_pessoa FROM tbl_pessoa " +
+                    "WHERE email = '" + textBox_Usuario.Text + "' " +
+                    "  AND senha = '" + textBox_Senha.Text + "';";
+                MySqlDataReader leitorPessoa = ClassMYSQL.comando.ExecuteReader();
+
+                int id_pessoa = 0;
+                if (leitorPessoa.Read())
+                {
+                    id_pessoa = leitorPessoa.GetInt32(0);
+                }
+                leitorPessoa.Close();
+
+                if (id_pessoa == 0)
+                {
+                    labelERRO.Text = "Usuário e/ou senha incorretos!";
+                    textBox_Senha.Clear();
+                    return;
+                }
+
+                ClassMYSQL.comando.CommandText =
+                    "SELECT departamento FROM tbl_colaborador " +
+                    "WHERE fk_pessoa = " + id_pessoa + ";";
+                string departamento = Convert.ToString(ClassMYSQL.comando.ExecuteScalar());
+
+                ClassMYSQL.conexao.Close();
+                this.Hide();
+
+                if (departamento == "ADM")
+                {
+                    Sessao.IdColaborador = id_pessoa;
+                    Form_Gerenciamento Form_Login = new Form_Gerenciamento();
+                    Form_Login.ShowDialog();
+                }
+                else if (departamento == "Operador")
+                {
+                    Sessao.IdColaborador = id_pessoa;
+                    Form_Venda Form_Login = new Form_Venda();
+                    Form_Login.ShowDialog();
+                }
+                ClassMYSQL.conexao.Close();
+                this.Close();
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Erro ao entrar: " + erro.Message);
+            }
+            finally
+            {
+                if (ClassMYSQL.conexao.State == ConnectionState.Open)
+                    ClassMYSQL.conexao.Close();
             }
         }
 
-        private void buttonLIMPAR_Click(object sender, EventArgs e)
+        private void button_Limpar_Click(object sender, EventArgs e)
         {
-            textBoxUSUARIO.Clear();
-            textBoxSENHA.Clear();
+            textBox_Usuario.Clear();
+            textBox_Senha.Clear();
             labelERRO.Text = "";
         }
 
