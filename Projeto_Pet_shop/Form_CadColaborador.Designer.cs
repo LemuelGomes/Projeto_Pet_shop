@@ -248,6 +248,7 @@
             this.Controls.Add(this.button_Cadastrar);
             this.Name = "Form_CadColaborador";
             this.Text = "Cadastro de Colaborador";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_CadColaborador_FormClosing);
             this.groupBox_Departamento.ResumeLayout(false);
             this.groupBox_Departamento.PerformLayout();
             this.ResumeLayout(false);

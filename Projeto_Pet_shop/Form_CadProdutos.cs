@@ -13,6 +13,8 @@ namespace Projeto_Pet_shop
 {
     public partial class Form_CadProdutos : Form
     {
+        private int idProdutoSelecionado = 0;
+
         public Form_CadProdutos()
         {
             InitializeComponent();
@@ -24,11 +26,15 @@ namespace Projeto_Pet_shop
             try
             {
                 ClassMYSQL.conexao.Open();
-                ClassMYSQL.comando.CommandText = "SELECT descricao_produto, categoria_produto, quantidade_produto, preco_custo, preco_produto FROM tbl_produtos;";
+                ClassMYSQL.comando.CommandText =
+                    "SELECT id, descricao_produto, categoria_produto, quantidade_produto, preco_custo, preco_produto " +
+                    "FROM tbl_produtos;";
                 MySqlDataAdapter adaptadorProdutos = new MySqlDataAdapter(ClassMYSQL.comando);
                 DataTable tabelaProdutos = new DataTable();
                 adaptadorProdutos.Fill(tabelaProdutos);
+
                 dataGridViewPRODUTOS.DataSource = tabelaProdutos;
+                dataGridViewPRODUTOS.Columns["id"].Visible = false;              // esconde o ID
                 dataGridViewPRODUTOS.Columns["descricao_produto"].HeaderText = "Descrição";
                 dataGridViewPRODUTOS.Columns["categoria_produto"].HeaderText = "Categoria";
                 dataGridViewPRODUTOS.Columns["quantidade_produto"].HeaderText = "Estoque";
@@ -37,7 +43,12 @@ namespace Projeto_Pet_shop
             }
             catch
             {
-                MessageBox.Show("Não conseguimos atualizar sua lista de produtos, fale com o administrador do sistema!");
+                MessageBox.Show(
+                    "Não conseguimos atualizar sua lista de produtos, fale com o administrador do sistema!",
+                    "Erro",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
             finally
             {
@@ -73,7 +84,7 @@ namespace Projeto_Pet_shop
                          Sessao.IdColaborador + "," +
                          " NULL" +
                     ");";
-    
+
                 ClassMYSQL.comando.ExecuteNonQuery();
                 MessageBox.Show("Produto cadastrado com sucesso!");
 
@@ -116,18 +127,17 @@ namespace Projeto_Pet_shop
                 return;
             }
 
+            int idProduto = 0;
+
             try
             {
-                if (ClassMYSQL.conexao.State != ConnectionState.Open)
-                    ClassMYSQL.conexao.Open();
-
+                ClassMYSQL.conexao.Open();
                 ClassMYSQL.comando.CommandText =
-                    "SELECT id, categoria_produto, quantidade_produto, preco_custo, preco_produto" +
+                    "SELECT id, categoria_produto, quantidade_produto, preco_custo, preco_produto " +
                     "FROM tbl_produtos " +
                     "WHERE descricao_produto = '" + textBox_Descricao.Text + "';";
                 MySqlDataReader leitor = ClassMYSQL.comando.ExecuteReader();
 
-                int idProduto = 0;
                 if (leitor.Read())
                 {
                     idProduto = leitor.GetInt32("id");
@@ -138,15 +148,13 @@ namespace Projeto_Pet_shop
                 }
                 else
                 {
-                    leitor.Close();
                     MessageBox.Show("Produto não encontrado.");
+                    leitor.Close();
                     return;
                 }
                 leitor.Close();
 
-                atualizar_dataGRID();
-
-                DialogResult resp = MessageBox.Show(
+                var resp = MessageBox.Show(
                     "Deseja realmente excluir este produto?",
                     "Confirmar exclusão",
                     MessageBoxButtons.YesNo,
@@ -158,14 +166,15 @@ namespace Projeto_Pet_shop
                     ClassMYSQL.comando.CommandText =
                         "DELETE FROM tbl_produtos WHERE id = " + idProduto + ";";
                     ClassMYSQL.comando.ExecuteNonQuery();
-                    MessageBox.Show("Produto excluído com sucesso.");
                 }
 
+                ClassMYSQL.conexao.Close();
                 textBox_Descricao.Clear();
                 textBox_Categoria.Clear();
                 textBox_Quantidade.Clear();
                 textBox_PrecoCusto.Clear();
                 textBox_PrecoVenda.Clear();
+                MessageBox.Show("Produto excluído com sucesso.");
 
                 atualizar_dataGRID();
             }
@@ -175,8 +184,92 @@ namespace Projeto_Pet_shop
             }
             finally
             {
-                if (ClassMYSQL.conexao.State == ConnectionState.Open)
-                    ClassMYSQL.conexao.Close();
+                ClassMYSQL.conexao.Close();
+            }
+        }
+
+        private void button_Atualizar_Click(object sender, EventArgs e)
+        {
+            // 1) Verifica se descrição foi informada
+            if (textBox_Descricao.Text == "")
+            {
+                MessageBox.Show("Digite a descrição do produto para buscar ou atualizar.");
+                return;
+            }
+
+            try
+            {
+                ClassMYSQL.conexao.Open();
+
+                if (idProdutoSelecionado == 0)
+                {
+                    ClassMYSQL.comando.CommandText =
+                        "SELECT id, categoria_produto, quantidade_produto, preco_custo, preco_produto " +
+                        "FROM tbl_produtos " +
+                        "WHERE descricao_produto = '" + textBox_Descricao.Text + "';";
+                    var leitor = ClassMYSQL.comando.ExecuteReader();
+
+                    if (leitor.Read())
+                    {
+                        idProdutoSelecionado = leitor.GetInt32("id");
+                        textBox_Categoria.Text = leitor.GetString("categoria_produto");
+                        textBox_Quantidade.Text = leitor.GetInt32("quantidade_produto").ToString();
+                        textBox_PrecoCusto.Text = leitor.GetDecimal("preco_custo").ToString();
+                        textBox_PrecoVenda.Text = leitor.GetDecimal("preco_produto").ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Produto não encontrado.");
+                    }
+                    leitor.Close();
+                }
+                else
+                {
+                    ClassMYSQL.comando.CommandText =
+                        "UPDATE tbl_produtos SET " +
+                        "descricao_produto   = '" + textBox_Descricao.Text + "', " +
+                        "categoria_produto   = '" + textBox_Categoria.Text + "', " +
+                        "quantidade_produto  = " + textBox_Quantidade.Text + ", " +
+                        "preco_custo         = " + textBox_PrecoCusto.Text.Replace(',', '.') + ", " +
+                        "preco_produto       = " + textBox_PrecoVenda.Text.Replace(',', '.') +
+                        " WHERE id = " + idProdutoSelecionado + ";";
+
+                    ClassMYSQL.comando.ExecuteNonQuery();
+                    MessageBox.Show("Produto atualizado com sucesso.");
+
+                    // volta ao estado inicial
+                    idProdutoSelecionado = 0;
+                    textBox_Descricao.Clear();
+                    textBox_Categoria.Clear();
+                    textBox_Quantidade.Clear();
+                    textBox_PrecoCusto.Clear();
+                    textBox_PrecoVenda.Clear();
+                }
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Erro ao atualizar produto: " + erro.Message);
+            }
+            finally
+            {
+                ClassMYSQL.conexao.Close();
+                atualizar_dataGRID();
+            }
+        }
+
+        private void Form_CadProdutos_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+
+                this.Hide();
+
+                using (var frm = new Form_Gerenciamento())
+                {
+                    frm.ShowDialog();
+                }
+                this.Close();
             }
         }
     }

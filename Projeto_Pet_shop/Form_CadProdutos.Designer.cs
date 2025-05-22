@@ -218,6 +218,7 @@
             this.button_Atualizar.Text = "Atualizar";
             this.button_Atualizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button_Atualizar.UseVisualStyleBackColor = false;
+            this.button_Atualizar.Click += new System.EventHandler(this.button_Atualizar_Click);
             // 
             // textBox_PrecoVenda
             // 
@@ -291,6 +292,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_CadProdutos";
             this.Text = "Cadastro de Produtos";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_CadProdutos_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPRODUTOS)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

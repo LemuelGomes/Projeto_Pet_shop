@@ -85,5 +85,21 @@ namespace Projeto_Pet_shop
             Form_CadColaborador.ShowDialog();
             this.Close();
         }
+
+        private void Form_CadColaborador_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+
+                this.Hide();
+
+                using (var frm = new Form_Gerenciamento())
+                {
+                    frm.ShowDialog();
+                }
+                this.Close();
+            }
+        }
     }
 }

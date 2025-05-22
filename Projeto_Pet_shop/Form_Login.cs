@@ -18,7 +18,6 @@ namespace Projeto_Pet_shop
         public Form_Login()
         {
             InitializeComponent();
-            this.FormClosing += Form_Login_FormClosing;
             labelERRO.Text = "";
         }
 
@@ -98,7 +97,21 @@ namespace Projeto_Pet_shop
 
         private void Form_Login_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //Fecha a aplicação.
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                var resp = MessageBox.Show(
+                    "Deseja realmente sair da aplicação?",
+                    "Confirmar saída",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (resp == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
         }
     }
+
 }
