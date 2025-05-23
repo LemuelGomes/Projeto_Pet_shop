@@ -31,51 +31,58 @@ namespace Projeto_Pet_shop
 
             try
             {
+                // 1) Abre conexão
                 if (ClassMYSQL.conexao.State != ConnectionState.Open)
                     ClassMYSQL.conexao.Open();
 
+                // 2) Pega o id_pessoa
                 ClassMYSQL.comando.CommandText =
-                    "SELECT id_pessoa FROM tbl_pessoa " +
+                    "SELECT id_pessoa " +
+                    "FROM tbl_pessoa " +
                     "WHERE email = '" + textBox_Usuario.Text + "' " +
                     "  AND senha = '" + textBox_Senha.Text + "';";
-                MySqlDataReader leitorPessoa = ClassMYSQL.comando.ExecuteReader();
-
-                int id_pessoa = 0;
-                if (leitorPessoa.Read())
-                {
-                    id_pessoa = leitorPessoa.GetInt32(0);
-                }
-                leitorPessoa.Close();
-
-                if (id_pessoa == 0)
+                object objPessoa = ClassMYSQL.comando.ExecuteScalar();
+                if (objPessoa == null)
                 {
                     labelERRO.Text = "Usuário e/ou senha incorretos!";
                     textBox_Senha.Clear();
                     return;
                 }
+                int idPessoa = Convert.ToInt32(objPessoa);
 
+                // 3) Pega id_colaborador e departamento numa só consulta
                 ClassMYSQL.comando.CommandText =
-                    "SELECT departamento FROM tbl_colaborador " +
-                    "WHERE fk_pessoa = " + id_pessoa + ";";
-                string departamento = Convert.ToString(ClassMYSQL.comando.ExecuteScalar());
-
-                ClassMYSQL.conexao.Close();
-                this.Hide();
-
-                if (departamento == "ADM")
+                    "SELECT id_colaborador, departamento " +
+                    "FROM tbl_colaborador " +
+                    "WHERE fk_pessoa = " + idPessoa + ";";
+                using (var readerCol = ClassMYSQL.comando.ExecuteReader())
                 {
-                    Sessao.IdColaborador = id_pessoa;
-                    Form_Gerenciamento Form_Login = new Form_Gerenciamento();
-                    Form_Login.ShowDialog();
+                    if (!readerCol.Read())
+                    {
+                        MessageBox.Show("Colaborador não cadastrado. Fale com o administrador.");
+                        return;
+                    }
+
+                    int idColab = readerCol.GetInt32("id_colaborador");
+                    string departamento = readerCol.GetString("departamento");
+                    readerCol.Close();
+
+                    // 4) Armazena o id correto de colaborador na sessão
+                    Sessao.IdColaborador = idColab;
+
+                    // 5) Fecha a conexão antes de abrir o próximo form
+                    ClassMYSQL.conexao.Close();
+
+                    // 6) Navega para a tela adequada
+                    this.Hide();
+                    if (departamento == "ADM")
+                        new Form_Gerenciamento().ShowDialog();
+                    else // Operador (ou outro departamento padrão)
+                        new Form_Venda().ShowDialog();
+
+                    // 7) Fecha o login quando voltar
+                    this.Close();
                 }
-                else if (departamento == "Operador")
-                {
-                    Sessao.IdColaborador = id_pessoa;
-                    Form_Venda Form_Login = new Form_Venda();
-                    Form_Login.ShowDialog();
-                }
-                ClassMYSQL.conexao.Close();
-                this.Close();
             }
             catch (Exception erro)
             {
