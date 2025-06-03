@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SQLite;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace Projeto_Pet_shop
 {
     public partial class Form_Login : Form
     {
-
         public Form_Login()
         {
             InitializeComponent();
@@ -32,16 +24,18 @@ namespace Projeto_Pet_shop
             try
             {
                 // 1) Abre conexão
-                if (ClassMYSQL.conexao.State != ConnectionState.Open)
-                    ClassMYSQL.conexao.Open();
+                if (ClassSQLite.conexao.State != ConnectionState.Open)
+                    ClassSQLite.conexao.Open();
 
                 // 2) Pega o id_pessoa
-                ClassMYSQL.comando.CommandText =
+                ClassSQLite.comando.CommandText =
                     "SELECT id_pessoa " +
                     "FROM tbl_pessoa " +
-                    "WHERE email = '" + textBox_Usuario.Text + "' " +
-                    "  AND senha = '" + textBox_Senha.Text + "';";
-                object objPessoa = ClassMYSQL.comando.ExecuteScalar();
+                    "WHERE email = @email AND senha = @senha;";
+                ClassSQLite.comando.Parameters.Clear();
+                ClassSQLite.comando.Parameters.AddWithValue("@email", textBox_Usuario.Text);
+                ClassSQLite.comando.Parameters.AddWithValue("@senha", textBox_Senha.Text);
+                object objPessoa = ClassSQLite.comando.ExecuteScalar();
                 if (objPessoa == null)
                 {
                     labelERRO.Text = "Usuário e/ou senha incorretos!";
@@ -51,27 +45,31 @@ namespace Projeto_Pet_shop
                 int idPessoa = Convert.ToInt32(objPessoa);
 
                 // 3) Pega id_colaborador e departamento numa só consulta
-                ClassMYSQL.comando.CommandText =
+                ClassSQLite.comando.CommandText =
                     "SELECT id_colaborador, departamento " +
                     "FROM tbl_colaborador " +
-                    "WHERE fk_pessoa = " + idPessoa + ";";
-                using (var readerCol = ClassMYSQL.comando.ExecuteReader())
+                    "WHERE fk_pessoa = @fk_pessoa;";
+                ClassSQLite.comando.Parameters.Clear();
+                ClassSQLite.comando.Parameters.AddWithValue("@fk_pessoa", idPessoa);
+
+                using (var readerCol = ClassSQLite.comando.ExecuteReader())
                 {
                     if (!readerCol.Read())
                     {
                         MessageBox.Show("Colaborador não cadastrado. Fale com o administrador.");
+                        readerCol.Close();
                         return;
                     }
 
-                    int idColab = readerCol.GetInt32("id_colaborador");
-                    string departamento = readerCol.GetString("departamento");
+                    int idColab = readerCol.GetInt32(0);
+                    string departamento = readerCol.GetString(1);
                     readerCol.Close();
 
                     // 4) Armazena o id correto de colaborador na sessão
                     Sessao.IdColaborador = idColab;
 
                     // 5) Fecha a conexão antes de abrir o próximo form
-                    ClassMYSQL.conexao.Close();
+                    ClassSQLite.conexao.Close();
 
                     // 6) Navega para a tela adequada
                     this.Hide();
@@ -90,8 +88,8 @@ namespace Projeto_Pet_shop
             }
             finally
             {
-                if (ClassMYSQL.conexao.State == ConnectionState.Open)
-                    ClassMYSQL.conexao.Close();
+                if (ClassSQLite.conexao.State == ConnectionState.Open)
+                    ClassSQLite.conexao.Close();
             }
         }
 
@@ -120,5 +118,4 @@ namespace Projeto_Pet_shop
             }
         }
     }
-
 }

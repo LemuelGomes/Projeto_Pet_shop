@@ -1,12 +1,6 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SQLite;
 using System.Windows.Forms;
 
 namespace Projeto_Pet_shop
@@ -18,19 +12,19 @@ namespace Projeto_Pet_shop
         public Form_CadProdutos()
         {
             InitializeComponent();
-
             atualizar_dataGRID();
         }
+
         private void atualizar_dataGRID()
         {
             try
             {
-                ClassMYSQL.conexao.Open();
-                ClassMYSQL.comando.CommandText =
+                ClassSQLite.conexao.Open();
+                ClassSQLite.comando.CommandText =
                     "SELECT id, descricao_produto, categoria_produto, quantidade_produto, preco_custo, preco_produto " +
                     "FROM tbl_produtos;";
-                MySqlDataAdapter adaptadorProdutos = new MySqlDataAdapter(ClassMYSQL.comando);
-                DataTable tabelaProdutos = new DataTable();
+                var adaptadorProdutos = new SQLiteDataAdapter(ClassSQLite.comando);
+                var tabelaProdutos = new DataTable();
                 adaptadorProdutos.Fill(tabelaProdutos);
 
                 dataGridViewPRODUTOS.DataSource = tabelaProdutos;
@@ -52,9 +46,10 @@ namespace Projeto_Pet_shop
             }
             finally
             {
-                ClassMYSQL.conexao.Close();
+                ClassSQLite.conexao.Close();
             }
         }
+
         private void button_CadProduto_Click(object sender, EventArgs e)
         {
             if (textBox_Descricao.Text == "" ||
@@ -69,23 +64,30 @@ namespace Projeto_Pet_shop
 
             try
             {
-                if (ClassMYSQL.conexao.State != ConnectionState.Open)
-                    ClassMYSQL.conexao.Open();
+                if (ClassSQLite.conexao.State != ConnectionState.Open)
+                    ClassSQLite.conexao.Open();
 
-                ClassMYSQL.comando.CommandText =
+                ClassSQLite.comando.CommandText =
                     "INSERT INTO tbl_produtos " +
                     "(descricao_produto, categoria_produto, quantidade_produto, preco_custo, preco_produto, fk_colaborador, fk_pagamento) " +
                     "VALUES (" +
-                       " '" + textBox_Descricao.Text + "'," +
-                       " '" + textBox_Categoria.Text + "'," +
-                         textBox_Quantidade.Text + "," +
-                         textBox_PrecoCusto.Text.Replace(',', '.') + "," +
-                         textBox_PrecoVenda.Text.Replace(',', '.') + "," +
-                         Sessao.IdColaborador + "," +
-                         " NULL" +
+                       " @desc, " +
+                       " @cat, " +
+                         "@qtd, " +
+                         "@custo, " +
+                         "@venda, " +
+                         "@colab, " +
+                         "NULL" +
                     ");";
+                ClassSQLite.comando.Parameters.Clear();
+                ClassSQLite.comando.Parameters.AddWithValue("@desc", textBox_Descricao.Text);
+                ClassSQLite.comando.Parameters.AddWithValue("@cat", textBox_Categoria.Text);
+                ClassSQLite.comando.Parameters.AddWithValue("@qtd", Convert.ToInt32(textBox_Quantidade.Text));
+                ClassSQLite.comando.Parameters.AddWithValue("@custo", Convert.ToDouble(textBox_PrecoCusto.Text.Replace(',', '.')));
+                ClassSQLite.comando.Parameters.AddWithValue("@venda", Convert.ToDouble(textBox_PrecoVenda.Text.Replace(',', '.')));
+                ClassSQLite.comando.Parameters.AddWithValue("@colab", Sessao.IdColaborador);
 
-                ClassMYSQL.comando.ExecuteNonQuery();
+                ClassSQLite.comando.ExecuteNonQuery();
                 MessageBox.Show("Produto cadastrado com sucesso!");
 
                 textBox_Descricao.Clear();
@@ -100,16 +102,19 @@ namespace Projeto_Pet_shop
             }
             finally
             {
-                if (ClassMYSQL.conexao.State == ConnectionState.Open)
-                    ClassMYSQL.conexao.Close();
+                if (ClassSQLite.conexao.State == ConnectionState.Open)
+                    ClassSQLite.conexao.Close();
             }
             atualizar_dataGRID();
         }
+
         private void buttonFECHAR_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form_Gerenciamento Form_CadProdutos = new Form_Gerenciamento();
-            Form_CadProdutos.ShowDialog();
+            using (var Form_CadProdutos = new Form_Gerenciamento())
+            {
+                Form_CadProdutos.ShowDialog();
+            }
             this.Close();
         }
 
@@ -131,20 +136,22 @@ namespace Projeto_Pet_shop
 
             try
             {
-                ClassMYSQL.conexao.Open();
-                ClassMYSQL.comando.CommandText =
+                ClassSQLite.conexao.Open();
+                ClassSQLite.comando.CommandText =
                     "SELECT id, categoria_produto, quantidade_produto, preco_custo, preco_produto " +
                     "FROM tbl_produtos " +
-                    "WHERE descricao_produto = '" + textBox_Descricao.Text + "';";
-                MySqlDataReader leitor = ClassMYSQL.comando.ExecuteReader();
+                    "WHERE descricao_produto = @desc;";
+                ClassSQLite.comando.Parameters.Clear();
+                ClassSQLite.comando.Parameters.AddWithValue("@desc", textBox_Descricao.Text);
+                SQLiteDataReader leitor = ClassSQLite.comando.ExecuteReader();
 
                 if (leitor.Read())
                 {
-                    idProduto = leitor.GetInt32("id");
-                    textBox_Categoria.Text = leitor.GetString("categoria_produto");
-                    textBox_Quantidade.Text = leitor.GetInt32("quantidade_produto").ToString();
-                    textBox_PrecoCusto.Text = leitor.GetDecimal("preco_custo").ToString();
-                    textBox_PrecoVenda.Text = leitor.GetDecimal("preco_produto").ToString();
+                    idProduto = leitor.GetInt32(0);
+                    textBox_Categoria.Text = leitor.GetString(1);
+                    textBox_Quantidade.Text = leitor.GetInt32(2).ToString();
+                    textBox_PrecoCusto.Text = leitor.GetDouble(3).ToString();
+                    textBox_PrecoVenda.Text = leitor.GetDouble(4).ToString();
                 }
                 else
                 {
@@ -163,12 +170,13 @@ namespace Projeto_Pet_shop
 
                 if (resp == DialogResult.Yes)
                 {
-                    ClassMYSQL.comando.CommandText =
-                        "DELETE FROM tbl_produtos WHERE id = " + idProduto + ";";
-                    ClassMYSQL.comando.ExecuteNonQuery();
+                    ClassSQLite.comando.CommandText =
+                        "DELETE FROM tbl_produtos WHERE id = @id;";
+                    ClassSQLite.comando.Parameters.Clear();
+                    ClassSQLite.comando.Parameters.AddWithValue("@id", idProduto);
+                    ClassSQLite.comando.ExecuteNonQuery();
                 }
 
-                ClassMYSQL.conexao.Close();
                 textBox_Descricao.Clear();
                 textBox_Categoria.Clear();
                 textBox_Quantidade.Clear();
@@ -184,7 +192,7 @@ namespace Projeto_Pet_shop
             }
             finally
             {
-                ClassMYSQL.conexao.Close();
+                ClassSQLite.conexao.Close();
             }
         }
 
@@ -199,23 +207,25 @@ namespace Projeto_Pet_shop
 
             try
             {
-                ClassMYSQL.conexao.Open();
+                ClassSQLite.conexao.Open();
 
                 if (idProdutoSelecionado == 0)
                 {
-                    ClassMYSQL.comando.CommandText =
+                    ClassSQLite.comando.CommandText =
                         "SELECT id, categoria_produto, quantidade_produto, preco_custo, preco_produto " +
                         "FROM tbl_produtos " +
-                        "WHERE descricao_produto = '" + textBox_Descricao.Text + "';";
-                    var leitor = ClassMYSQL.comando.ExecuteReader();
+                        "WHERE descricao_produto = @desc;";
+                    ClassSQLite.comando.Parameters.Clear();
+                    ClassSQLite.comando.Parameters.AddWithValue("@desc", textBox_Descricao.Text);
 
+                    var leitor = ClassSQLite.comando.ExecuteReader();
                     if (leitor.Read())
                     {
-                        idProdutoSelecionado = leitor.GetInt32("id");
-                        textBox_Categoria.Text = leitor.GetString("categoria_produto");
-                        textBox_Quantidade.Text = leitor.GetInt32("quantidade_produto").ToString();
-                        textBox_PrecoCusto.Text = leitor.GetDecimal("preco_custo").ToString();
-                        textBox_PrecoVenda.Text = leitor.GetDecimal("preco_produto").ToString();
+                        idProdutoSelecionado = leitor.GetInt32(0);
+                        textBox_Categoria.Text = leitor.GetString(1);
+                        textBox_Quantidade.Text = leitor.GetInt32(2).ToString();
+                        textBox_PrecoCusto.Text = leitor.GetDouble(3).ToString();
+                        textBox_PrecoVenda.Text = leitor.GetDouble(4).ToString();
                     }
                     else
                     {
@@ -225,16 +235,24 @@ namespace Projeto_Pet_shop
                 }
                 else
                 {
-                    ClassMYSQL.comando.CommandText =
+                    ClassSQLite.comando.CommandText =
                         "UPDATE tbl_produtos SET " +
-                        "descricao_produto   = '" + textBox_Descricao.Text + "', " +
-                        "categoria_produto   = '" + textBox_Categoria.Text + "', " +
-                        "quantidade_produto  = " + textBox_Quantidade.Text + ", " +
-                        "preco_custo         = " + textBox_PrecoCusto.Text.Replace(',', '.') + ", " +
-                        "preco_produto       = " + textBox_PrecoVenda.Text.Replace(',', '.') +
-                        " WHERE id = " + idProdutoSelecionado + ";";
+                        "descricao_produto   = @desc, " +
+                        "categoria_produto   = @cat, " +
+                        "quantidade_produto  = @qtd, " +
+                        "preco_custo         = @custo, " +
+                        "preco_produto       = @venda " +
+                        "WHERE id = @id;";
 
-                    ClassMYSQL.comando.ExecuteNonQuery();
+                    ClassSQLite.comando.Parameters.Clear();
+                    ClassSQLite.comando.Parameters.AddWithValue("@desc", textBox_Descricao.Text);
+                    ClassSQLite.comando.Parameters.AddWithValue("@cat", textBox_Categoria.Text);
+                    ClassSQLite.comando.Parameters.AddWithValue("@qtd", Convert.ToInt32(textBox_Quantidade.Text));
+                    ClassSQLite.comando.Parameters.AddWithValue("@custo", Convert.ToDouble(textBox_PrecoCusto.Text.Replace(',', '.')));
+                    ClassSQLite.comando.Parameters.AddWithValue("@venda", Convert.ToDouble(textBox_PrecoVenda.Text.Replace(',', '.')));
+                    ClassSQLite.comando.Parameters.AddWithValue("@id", idProdutoSelecionado);
+
+                    ClassSQLite.comando.ExecuteNonQuery();
                     MessageBox.Show("Produto atualizado com sucesso.");
 
                     // volta ao estado inicial
@@ -252,7 +270,7 @@ namespace Projeto_Pet_shop
             }
             finally
             {
-                ClassMYSQL.conexao.Close();
+                ClassSQLite.conexao.Close();
                 atualizar_dataGRID();
             }
         }
@@ -262,9 +280,7 @@ namespace Projeto_Pet_shop
             if (e.CloseReason == CloseReason.UserClosing)
             {
                 e.Cancel = true;
-
                 this.Hide();
-
                 using (var frm = new Form_Gerenciamento())
                 {
                     frm.ShowDialog();

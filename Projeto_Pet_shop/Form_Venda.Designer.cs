@@ -47,6 +47,8 @@
             this.button_NovaVenda = new System.Windows.Forms.Button();
             this.panel_Vendas = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
+            this.button_Remover = new System.Windows.Forms.Button();
+            this.button_Atualizar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_VendaRealizada)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Venda)).BeginInit();
             this.panel_Vendas.SuspendLayout();
@@ -188,6 +190,7 @@
             this.button_CancelarVenda.TabIndex = 5;
             this.button_CancelarVenda.Text = "Cancelar Venda";
             this.button_CancelarVenda.UseVisualStyleBackColor = true;
+            this.button_CancelarVenda.Click += new System.EventHandler(this.button_CancelarVenda_Click);
             // 
             // button_Pesquisar
             // 
@@ -241,11 +244,33 @@
             this.label4.TabIndex = 14;
             this.label4.Text = "%";
             // 
+            // button_Remover
+            // 
+            this.button_Remover.Location = new System.Drawing.Point(457, 107);
+            this.button_Remover.Name = "button_Remover";
+            this.button_Remover.Size = new System.Drawing.Size(84, 63);
+            this.button_Remover.TabIndex = 15;
+            this.button_Remover.Text = "Remover";
+            this.button_Remover.UseVisualStyleBackColor = true;
+            this.button_Remover.Click += new System.EventHandler(this.button_Remover_Click);
+            // 
+            // button_Atualizar
+            // 
+            this.button_Atualizar.Location = new System.Drawing.Point(457, 379);
+            this.button_Atualizar.Name = "button_Atualizar";
+            this.button_Atualizar.Size = new System.Drawing.Size(84, 63);
+            this.button_Atualizar.TabIndex = 16;
+            this.button_Atualizar.Text = "Atualizar";
+            this.button_Atualizar.UseVisualStyleBackColor = true;
+            this.button_Atualizar.Click += new System.EventHandler(this.button_Atualizar_Click);
+            // 
             // Form_Venda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(915, 635);
+            this.Controls.Add(this.button_Atualizar);
+            this.Controls.Add(this.button_Remover);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button_FinalizarVenda);
             this.Controls.Add(this.textBox_TaxaCartao);
@@ -291,5 +316,7 @@
         private System.Windows.Forms.Button button_NovaVenda;
         private System.Windows.Forms.Panel panel_Vendas;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button_Remover;
+        private System.Windows.Forms.Button button_Atualizar;
     }
 }
