@@ -16,5 +16,13 @@ namespace Projeto_Pet_shop
         {
             InitializeComponent();
         }
+
+        private void button_Sair_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form_Gerenciamento Form_Suporte = new Form_Gerenciamento();
+            Form_Suporte.ShowDialog();
+            this.Close();
+        }
     }
 }

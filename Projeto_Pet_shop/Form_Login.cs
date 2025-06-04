@@ -44,9 +44,9 @@ namespace Projeto_Pet_shop
                 }
                 int idPessoa = Convert.ToInt32(objPessoa);
 
-                // 3) Pega id_colaborador e departamento numa só consulta
+                // 3) Pega id_colaborador, departamento e data_demissao numa só consulta
                 ClassSQLite.comando.CommandText =
-                    "SELECT id_colaborador, departamento " +
+                    "SELECT id_colaborador, departamento, data_demissao " +
                     "FROM tbl_colaborador " +
                     "WHERE fk_pessoa = @fk_pessoa;";
                 ClassSQLite.comando.Parameters.Clear();
@@ -63,7 +63,15 @@ namespace Projeto_Pet_shop
 
                     int idColab = readerCol.GetInt32(0);
                     string departamento = readerCol.GetString(1);
+                    // Se data_demissao não for null ou vazia, usuário está inativo
+                    var dataDemissaoObj = readerCol["data_demissao"];
                     readerCol.Close();
+
+                    if (dataDemissaoObj != DBNull.Value && !string.IsNullOrWhiteSpace(dataDemissaoObj.ToString()))
+                    {
+                        MessageBox.Show("Usuário inativo (colaborador desligado).", "Acesso negado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
 
                     // 4) Armazena o id correto de colaborador na sessão
                     Sessao.IdColaborador = idColab;

@@ -43,7 +43,6 @@
             this.cadastrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrarColaboradorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrarProdutosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.alterarSenhaColaboradorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.relatórioToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.gestãoDePessoasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -140,8 +139,7 @@
             // 
             this.cadastrarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cadastrarColaboradorToolStripMenuItem1,
-            this.cadastrarProdutosToolStripMenuItem1,
-            this.alterarSenhaColaboradorToolStripMenuItem});
+            this.cadastrarProdutosToolStripMenuItem1});
             this.cadastrarToolStripMenuItem.Name = "cadastrarToolStripMenuItem";
             this.cadastrarToolStripMenuItem.Size = new System.Drawing.Size(106, 27);
             this.cadastrarToolStripMenuItem.Text = "Cadastro";
@@ -150,7 +148,7 @@
             // 
             this.cadastrarColaboradorToolStripMenuItem1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cadastrarColaboradorToolStripMenuItem1.Name = "cadastrarColaboradorToolStripMenuItem1";
-            this.cadastrarColaboradorToolStripMenuItem1.Size = new System.Drawing.Size(293, 22);
+            this.cadastrarColaboradorToolStripMenuItem1.Size = new System.Drawing.Size(261, 22);
             this.cadastrarColaboradorToolStripMenuItem1.Text = "Cadastrar Colaborador";
             this.cadastrarColaboradorToolStripMenuItem1.Click += new System.EventHandler(this.cadastrarColaboradorToolStripMenuItem1_Click);
             // 
@@ -158,17 +156,9 @@
             // 
             this.cadastrarProdutosToolStripMenuItem1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cadastrarProdutosToolStripMenuItem1.Name = "cadastrarProdutosToolStripMenuItem1";
-            this.cadastrarProdutosToolStripMenuItem1.Size = new System.Drawing.Size(293, 22);
+            this.cadastrarProdutosToolStripMenuItem1.Size = new System.Drawing.Size(261, 22);
             this.cadastrarProdutosToolStripMenuItem1.Text = "Cadastrar Produtos";
             this.cadastrarProdutosToolStripMenuItem1.Click += new System.EventHandler(this.cadastrarProdutosToolStripMenuItem1_Click);
-            // 
-            // alterarSenhaColaboradorToolStripMenuItem
-            // 
-            this.alterarSenhaColaboradorToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.alterarSenhaColaboradorToolStripMenuItem.Name = "alterarSenhaColaboradorToolStripMenuItem";
-            this.alterarSenhaColaboradorToolStripMenuItem.Size = new System.Drawing.Size(293, 22);
-            this.alterarSenhaColaboradorToolStripMenuItem.Text = "Alterar Senha Colaborador";
-            this.alterarSenhaColaboradorToolStripMenuItem.Click += new System.EventHandler(this.alterarSenhaColaboradorToolStripMenuItem_Click_1);
             // 
             // consultasToolStripMenuItem1
             // 
@@ -242,7 +232,6 @@
         private System.Windows.Forms.ToolStripMenuItem cadastrarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cadastrarColaboradorToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem cadastrarProdutosToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem alterarSenhaColaboradorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem consultasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem relatórioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gestãoDePessoasToolStripMenuItem;

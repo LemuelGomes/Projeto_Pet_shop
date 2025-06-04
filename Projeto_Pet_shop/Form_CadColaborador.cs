@@ -92,5 +92,13 @@ namespace Projeto_Pet_shop
                 this.Close();
             }
         }
+
+        private void button_Sair_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form_Gerenciamento Form_CadColaborador = new Form_Gerenciamento();
+            Form_CadColaborador.ShowDialog();
+            this.Close();
+        }
     }
 }

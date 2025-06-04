@@ -25,14 +25,6 @@ namespace Projeto_Pet_shop
             FormGerenciamento.Show();
         }
 
-        private void alterarSenhaColaboradorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Form_AlterarSenha FormGerenciamento = new Form_AlterarSenha();
-            FormGerenciamento.Closed += (s, args) => this.Close();
-            FormGerenciamento.Show();
-        }
-
         private void cadastrarProdutosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -94,14 +86,6 @@ namespace Projeto_Pet_shop
         {
             this.Hide();
             Form_CadProdutos Form_Gerenciamento = new Form_CadProdutos();
-            Form_Gerenciamento.ShowDialog();
-            this.Close();
-        }
-
-        private void alterarSenhaColaboradorToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            this.Hide();
-            Form_AlterarSenha Form_Gerenciamento = new Form_AlterarSenha();
             Form_Gerenciamento.ShowDialog();
             this.Close();
         }

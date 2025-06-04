@@ -46,6 +46,7 @@
             this.groupBox_Departamento = new System.Windows.Forms.GroupBox();
             this.radioButton_Operador = new System.Windows.Forms.RadioButton();
             this.radioButton_ADM = new System.Windows.Forms.RadioButton();
+            this.button_Sair = new System.Windows.Forms.Button();
             this.groupBox_Departamento.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -225,11 +226,23 @@
             this.radioButton_ADM.Text = "Administrador";
             this.radioButton_ADM.UseVisualStyleBackColor = true;
             // 
+            // button_Sair
+            // 
+            this.button_Sair.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Sair.Location = new System.Drawing.Point(441, 535);
+            this.button_Sair.Name = "button_Sair";
+            this.button_Sair.Size = new System.Drawing.Size(61, 31);
+            this.button_Sair.TabIndex = 16;
+            this.button_Sair.Text = "Sair";
+            this.button_Sair.UseVisualStyleBackColor = true;
+            this.button_Sair.Click += new System.EventHandler(this.button_Sair_Click);
+            // 
             // Form_CadColaborador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(514, 578);
+            this.Controls.Add(this.button_Sair);
             this.Controls.Add(this.groupBox_Departamento);
             this.Controls.Add(this.textBox_Cargo);
             this.Controls.Add(this.dateTimePicker_Admissao);
@@ -276,5 +289,6 @@
         private System.Windows.Forms.GroupBox groupBox_Departamento;
         private System.Windows.Forms.RadioButton radioButton_Operador;
         private System.Windows.Forms.RadioButton radioButton_ADM;
+        private System.Windows.Forms.Button button_Sair;
     }
 }
