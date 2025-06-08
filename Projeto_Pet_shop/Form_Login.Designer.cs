@@ -45,9 +45,11 @@
             this.button_Entrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_Entrar.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Entrar.ForeColor = System.Drawing.Color.Lime;
+            this.button_Entrar.Image = ((System.Drawing.Image)(resources.GetObject("button_Entrar.Image")));
+            this.button_Entrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_Entrar.Location = new System.Drawing.Point(12, 511);
             this.button_Entrar.Name = "button_Entrar";
-            this.button_Entrar.Size = new System.Drawing.Size(83, 36);
+            this.button_Entrar.Size = new System.Drawing.Size(134, 36);
             this.button_Entrar.TabIndex = 0;
             this.button_Entrar.Text = "Entrar";
             this.button_Entrar.UseVisualStyleBackColor = false;
@@ -60,11 +62,14 @@
             this.button_Limpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_Limpar.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Limpar.ForeColor = System.Drawing.Color.Yellow;
-            this.button_Limpar.Location = new System.Drawing.Point(460, 511);
+            this.button_Limpar.Image = ((System.Drawing.Image)(resources.GetObject("button_Limpar.Image")));
+            this.button_Limpar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_Limpar.Location = new System.Drawing.Point(435, 511);
             this.button_Limpar.Name = "button_Limpar";
-            this.button_Limpar.Size = new System.Drawing.Size(90, 36);
+            this.button_Limpar.Size = new System.Drawing.Size(115, 36);
             this.button_Limpar.TabIndex = 1;
             this.button_Limpar.Text = "Limpar";
+            this.button_Limpar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button_Limpar.UseVisualStyleBackColor = false;
             this.button_Limpar.Click += new System.EventHandler(this.button_Limpar_Click);
             // 
@@ -92,7 +97,7 @@
             this.labelUSUARIO.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.labelUSUARIO.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelUSUARIO.ForeColor = System.Drawing.Color.White;
-            this.labelUSUARIO.Location = new System.Drawing.Point(239, 451);
+            this.labelUSUARIO.Location = new System.Drawing.Point(242, 451);
             this.labelUSUARIO.Name = "labelUSUARIO";
             this.labelUSUARIO.Size = new System.Drawing.Size(83, 23);
             this.labelUSUARIO.TabIndex = 5;
@@ -129,7 +134,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::Projeto_Pet_shop.Properties.Resources.Imagem_Loja_Petshop_Amigos_Nat;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(562, 576);
             this.Controls.Add(this.labelERRO);

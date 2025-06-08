@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_CadColaborador));
             this.button_Cadastrar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -52,13 +53,19 @@
             // 
             // button_Cadastrar
             // 
+            this.button_Cadastrar.BackColor = System.Drawing.Color.Transparent;
+            this.button_Cadastrar.FlatAppearance.BorderSize = 0;
+            this.button_Cadastrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_Cadastrar.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Cadastrar.Location = new System.Drawing.Point(174, 525);
+            this.button_Cadastrar.ForeColor = System.Drawing.Color.Green;
+            this.button_Cadastrar.Image = ((System.Drawing.Image)(resources.GetObject("button_Cadastrar.Image")));
+            this.button_Cadastrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_Cadastrar.Location = new System.Drawing.Point(59, 523);
             this.button_Cadastrar.Name = "button_Cadastrar";
-            this.button_Cadastrar.Size = new System.Drawing.Size(177, 41);
+            this.button_Cadastrar.Size = new System.Drawing.Size(205, 41);
             this.button_Cadastrar.TabIndex = 0;
             this.button_Cadastrar.Text = "Cadastrar";
-            this.button_Cadastrar.UseVisualStyleBackColor = true;
+            this.button_Cadastrar.UseVisualStyleBackColor = false;
             this.button_Cadastrar.Click += new System.EventHandler(this.button_Cadastrar_Click);
             // 
             // label1
@@ -228,13 +235,17 @@
             // 
             // button_Sair
             // 
+            this.button_Sair.BackColor = System.Drawing.Color.Transparent;
+            this.button_Sair.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button_Sair.FlatAppearance.BorderSize = 0;
+            this.button_Sair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_Sair.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Sair.Location = new System.Drawing.Point(441, 535);
+            this.button_Sair.Image = ((System.Drawing.Image)(resources.GetObject("button_Sair.Image")));
+            this.button_Sair.Location = new System.Drawing.Point(455, 525);
             this.button_Sair.Name = "button_Sair";
-            this.button_Sair.Size = new System.Drawing.Size(61, 31);
+            this.button_Sair.Size = new System.Drawing.Size(47, 41);
             this.button_Sair.TabIndex = 16;
-            this.button_Sair.Text = "Sair";
-            this.button_Sair.UseVisualStyleBackColor = true;
+            this.button_Sair.UseVisualStyleBackColor = false;
             this.button_Sair.Click += new System.EventHandler(this.button_Sair_Click);
             // 
             // Form_CadColaborador
@@ -259,6 +270,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button_Cadastrar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_CadColaborador";
             this.Text = "Cadastro de Colaborador";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_CadColaborador_FormClosing);

@@ -63,36 +63,6 @@ namespace Projeto_Pet_shop.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _17545 {
-            get {
-                object obj = ResourceManager.GetObject("17545", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap excluir {
-            get {
-                object obj = ResourceManager.GetObject("excluir", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap excluir__1_ {
-            get {
-                object obj = ResourceManager.GetObject("excluir (1)", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Imagem_Loja_Petshop_Amigos_Nat {
             get {
                 object obj = ResourceManager.GetObject("Imagem Loja Petshop Amigos Nat", resourceCulture);
@@ -106,36 +76,6 @@ namespace Projeto_Pet_shop.Properties {
         internal static System.Drawing.Bitmap petshop_imagem_de_fundo {
             get {
                 object obj = ResourceManager.GetObject("petshop imagem de fundo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap sair_button {
-            get {
-                object obj = ResourceManager.GetObject("sair button", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap salvar_buttom {
-            get {
-                object obj = ResourceManager.GetObject("salvar_buttom", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap setas_circulares {
-            get {
-                object obj = ResourceManager.GetObject("setas-circulares", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

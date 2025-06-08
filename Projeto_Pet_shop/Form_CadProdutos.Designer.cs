@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_CadProdutos));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox_Descricao = new System.Windows.Forms.TextBox();
@@ -135,12 +135,15 @@
             // button_CadProduto
             // 
             this.button_CadProduto.BackColor = System.Drawing.Color.Transparent;
-            this.button_CadProduto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_CadProduto.FlatAppearance.BorderSize = 0;
+            this.button_CadProduto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_CadProduto.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_CadProduto.ForeColor = System.Drawing.Color.SteelBlue;
-            this.button_CadProduto.Image = global::Projeto_Pet_shop.Properties.Resources.salvar_buttom;
-            this.button_CadProduto.Location = new System.Drawing.Point(105, 438);
+            this.button_CadProduto.Image = ((System.Drawing.Image)(resources.GetObject("button_CadProduto.Image")));
+            this.button_CadProduto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_CadProduto.Location = new System.Drawing.Point(85, 439);
             this.button_CadProduto.Name = "button_CadProduto";
-            this.button_CadProduto.Size = new System.Drawing.Size(197, 41);
+            this.button_CadProduto.Size = new System.Drawing.Size(222, 41);
             this.button_CadProduto.TabIndex = 7;
             this.button_CadProduto.Text = "Cadastrar Produto";
             this.button_CadProduto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -151,14 +154,14 @@
             // 
             this.button_Fechar.BackColor = System.Drawing.Color.Transparent;
             this.button_Fechar.FlatAppearance.BorderSize = 0;
+            this.button_Fechar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_Fechar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Fechar.ForeColor = System.Drawing.Color.SteelBlue;
-            this.button_Fechar.Image = global::Projeto_Pet_shop.Properties.Resources.sair_button;
-            this.button_Fechar.Location = new System.Drawing.Point(1055, 463);
+            this.button_Fechar.Image = ((System.Drawing.Image)(resources.GetObject("button_Fechar.Image")));
+            this.button_Fechar.Location = new System.Drawing.Point(1083, 458);
             this.button_Fechar.Name = "button_Fechar";
-            this.button_Fechar.Size = new System.Drawing.Size(97, 37);
+            this.button_Fechar.Size = new System.Drawing.Size(69, 42);
             this.button_Fechar.TabIndex = 8;
-            this.button_Fechar.Text = "Fechar";
             this.button_Fechar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button_Fechar.UseVisualStyleBackColor = false;
             this.button_Fechar.Click += new System.EventHandler(this.buttonFECHAR_Click);
@@ -166,12 +169,14 @@
             // button_ExcluirProd
             // 
             this.button_ExcluirProd.BackColor = System.Drawing.Color.Transparent;
-            this.button_ExcluirProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_ExcluirProd.FlatAppearance.BorderSize = 0;
+            this.button_ExcluirProd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_ExcluirProd.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_ExcluirProd.ForeColor = System.Drawing.Color.SteelBlue;
-            this.button_ExcluirProd.Image = global::Projeto_Pet_shop.Properties.Resources.excluir__1_;
+            this.button_ExcluirProd.Image = ((System.Drawing.Image)(resources.GetObject("button_ExcluirProd.Image")));
             this.button_ExcluirProd.Location = new System.Drawing.Point(427, 387);
             this.button_ExcluirProd.Name = "button_ExcluirProd";
-            this.button_ExcluirProd.Size = new System.Drawing.Size(172, 41);
+            this.button_ExcluirProd.Size = new System.Drawing.Size(196, 41);
             this.button_ExcluirProd.TabIndex = 9;
             this.button_ExcluirProd.Text = "Excluir Produto";
             this.button_ExcluirProd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -180,8 +185,8 @@
             // 
             // dataGridViewPRODUTOS
             // 
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridViewPRODUTOS.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridViewPRODUTOS.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewPRODUTOS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPRODUTOS.Location = new System.Drawing.Point(427, 93);
             this.dataGridViewPRODUTOS.Name = "dataGridViewPRODUTOS";
@@ -193,12 +198,12 @@
             this.button_AtualizarLista.BackColor = System.Drawing.Color.Transparent;
             this.button_AtualizarLista.FlatAppearance.BorderSize = 0;
             this.button_AtualizarLista.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_AtualizarLista.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_AtualizarLista.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_AtualizarLista.ForeColor = System.Drawing.Color.SteelBlue;
-            this.button_AtualizarLista.Image = global::Projeto_Pet_shop.Properties.Resources.setas_circulares;
-            this.button_AtualizarLista.Location = new System.Drawing.Point(958, 387);
+            this.button_AtualizarLista.Image = ((System.Drawing.Image)(resources.GetObject("button_AtualizarLista.Image")));
+            this.button_AtualizarLista.Location = new System.Drawing.Point(910, 387);
             this.button_AtualizarLista.Name = "button_AtualizarLista";
-            this.button_AtualizarLista.Size = new System.Drawing.Size(194, 37);
+            this.button_AtualizarLista.Size = new System.Drawing.Size(242, 37);
             this.button_AtualizarLista.TabIndex = 13;
             this.button_AtualizarLista.Text = "Atualizar lista de Produtos";
             this.button_AtualizarLista.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -208,12 +213,14 @@
             // button_Atualizar
             // 
             this.button_Atualizar.BackColor = System.Drawing.Color.Transparent;
-            this.button_Atualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Atualizar.FlatAppearance.BorderSize = 0;
+            this.button_Atualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_Atualizar.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Atualizar.ForeColor = System.Drawing.Color.SteelBlue;
-            this.button_Atualizar.Image = global::Projeto_Pet_shop.Properties.Resources.setas_circulares;
-            this.button_Atualizar.Location = new System.Drawing.Point(637, 387);
+            this.button_Atualizar.Image = ((System.Drawing.Image)(resources.GetObject("button_Atualizar.Image")));
+            this.button_Atualizar.Location = new System.Drawing.Point(664, 387);
             this.button_Atualizar.Name = "button_Atualizar";
-            this.button_Atualizar.Size = new System.Drawing.Size(113, 41);
+            this.button_Atualizar.Size = new System.Drawing.Size(135, 41);
             this.button_Atualizar.TabIndex = 14;
             this.button_Atualizar.Text = "Atualizar";
             this.button_Atualizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
