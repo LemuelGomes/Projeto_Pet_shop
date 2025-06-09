@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Relatorio));
             this.dataGridView_Relatorio = new System.Windows.Forms.DataGridView();
             this.button_GerarRelatorio = new System.Windows.Forms.Button();
             this.comboBox_TipoPagamento = new System.Windows.Forms.ComboBox();
@@ -46,26 +47,26 @@
             // 
             // dataGridView_Relatorio
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView_Relatorio.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_Relatorio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView_Relatorio.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_Relatorio.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridView_Relatorio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView_Relatorio.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView_Relatorio.DefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridView_Relatorio.Location = new System.Drawing.Point(392, 12);
             this.dataGridView_Relatorio.Name = "dataGridView_Relatorio";
             this.dataGridView_Relatorio.Size = new System.Drawing.Size(824, 347);
@@ -73,12 +74,17 @@
             // 
             // button_GerarRelatorio
             // 
+            this.button_GerarRelatorio.FlatAppearance.BorderSize = 0;
+            this.button_GerarRelatorio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_GerarRelatorio.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_GerarRelatorio.Image = ((System.Drawing.Image)(resources.GetObject("button_GerarRelatorio.Image")));
+            this.button_GerarRelatorio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_GerarRelatorio.Location = new System.Drawing.Point(481, 365);
             this.button_GerarRelatorio.Name = "button_GerarRelatorio";
-            this.button_GerarRelatorio.Size = new System.Drawing.Size(160, 40);
+            this.button_GerarRelatorio.Size = new System.Drawing.Size(176, 40);
             this.button_GerarRelatorio.TabIndex = 3;
             this.button_GerarRelatorio.Text = "Gerar Relatório";
+            this.button_GerarRelatorio.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button_GerarRelatorio.UseVisualStyleBackColor = true;
             this.button_GerarRelatorio.Click += new System.EventHandler(this.button_GerarRelatorio_Click);
             // 
@@ -132,23 +138,31 @@
             // 
             // button_Limpar
             // 
+            this.button_Limpar.BackColor = System.Drawing.Color.Transparent;
+            this.button_Limpar.FlatAppearance.BorderSize = 0;
+            this.button_Limpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_Limpar.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Limpar.Image = ((System.Drawing.Image)(resources.GetObject("button_Limpar.Image")));
+            this.button_Limpar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_Limpar.Location = new System.Drawing.Point(12, 365);
             this.button_Limpar.Name = "button_Limpar";
             this.button_Limpar.Size = new System.Drawing.Size(160, 40);
             this.button_Limpar.TabIndex = 10;
             this.button_Limpar.Text = "Limpar Filtros";
-            this.button_Limpar.UseVisualStyleBackColor = true;
+            this.button_Limpar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button_Limpar.UseVisualStyleBackColor = false;
             this.button_Limpar.Click += new System.EventHandler(this.button_Limpar_Click);
             // 
             // button_Sair
             // 
+            this.button_Sair.FlatAppearance.BorderSize = 0;
+            this.button_Sair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_Sair.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Sair.Location = new System.Drawing.Point(1108, 365);
+            this.button_Sair.Image = ((System.Drawing.Image)(resources.GetObject("button_Sair.Image")));
+            this.button_Sair.Location = new System.Drawing.Point(1164, 365);
             this.button_Sair.Name = "button_Sair";
-            this.button_Sair.Size = new System.Drawing.Size(108, 40);
+            this.button_Sair.Size = new System.Drawing.Size(52, 40);
             this.button_Sair.TabIndex = 11;
-            this.button_Sair.Text = "Sair";
             this.button_Sair.UseVisualStyleBackColor = true;
             // 
             // monthCalendar_Periodo

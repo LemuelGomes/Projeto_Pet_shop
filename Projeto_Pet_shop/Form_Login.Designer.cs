@@ -33,9 +33,9 @@
             this.button_Limpar = new System.Windows.Forms.Button();
             this.textBox_Usuario = new System.Windows.Forms.TextBox();
             this.textBox_Senha = new System.Windows.Forms.TextBox();
-            this.labelUSUARIO = new System.Windows.Forms.Label();
-            this.labelSENHA = new System.Windows.Forms.Label();
             this.labelERRO = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button_Entrar
@@ -49,9 +49,10 @@
             this.button_Entrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_Entrar.Location = new System.Drawing.Point(12, 511);
             this.button_Entrar.Name = "button_Entrar";
-            this.button_Entrar.Size = new System.Drawing.Size(134, 36);
+            this.button_Entrar.Size = new System.Drawing.Size(104, 36);
             this.button_Entrar.TabIndex = 0;
             this.button_Entrar.Text = "Entrar";
+            this.button_Entrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button_Entrar.UseVisualStyleBackColor = false;
             this.button_Entrar.Click += new System.EventHandler(this.button_Entrar_Click);
             // 
@@ -90,34 +91,6 @@
             this.textBox_Senha.Size = new System.Drawing.Size(212, 26);
             this.textBox_Senha.TabIndex = 4;
             // 
-            // labelUSUARIO
-            // 
-            this.labelUSUARIO.AutoSize = true;
-            this.labelUSUARIO.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.labelUSUARIO.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelUSUARIO.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUSUARIO.ForeColor = System.Drawing.Color.White;
-            this.labelUSUARIO.Location = new System.Drawing.Point(242, 451);
-            this.labelUSUARIO.Name = "labelUSUARIO";
-            this.labelUSUARIO.Size = new System.Drawing.Size(83, 23);
-            this.labelUSUARIO.TabIndex = 5;
-            this.labelUSUARIO.Text = "Usuário";
-            this.labelUSUARIO.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // labelSENHA
-            // 
-            this.labelSENHA.AutoSize = true;
-            this.labelSENHA.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.labelSENHA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.labelSENHA.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSENHA.ForeColor = System.Drawing.Color.White;
-            this.labelSENHA.Location = new System.Drawing.Point(246, 517);
-            this.labelSENHA.Name = "labelSENHA";
-            this.labelSENHA.Size = new System.Drawing.Size(69, 23);
-            this.labelSENHA.TabIndex = 6;
-            this.labelSENHA.Text = "Senha";
-            this.labelSENHA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // labelERRO
             // 
             this.labelERRO.BackColor = System.Drawing.Color.Transparent;
@@ -130,6 +103,24 @@
             this.labelERRO.Text = "Usuário e/ou Senha Incorretos!";
             this.labelERRO.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
+            this.label1.Location = new System.Drawing.Point(136, 474);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(37, 34);
+            this.label1.TabIndex = 8;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
+            this.label2.Location = new System.Drawing.Point(136, 538);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 31);
+            this.label2.TabIndex = 9;
+            // 
             // Form_Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -137,9 +128,9 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(562, 576);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.labelERRO);
-            this.Controls.Add(this.labelSENHA);
-            this.Controls.Add(this.labelUSUARIO);
             this.Controls.Add(this.textBox_Senha);
             this.Controls.Add(this.textBox_Usuario);
             this.Controls.Add(this.button_Limpar);
@@ -160,9 +151,9 @@
         private System.Windows.Forms.Button button_Limpar;
         private System.Windows.Forms.TextBox textBox_Usuario;
         private System.Windows.Forms.TextBox textBox_Senha;
-        private System.Windows.Forms.Label labelUSUARIO;
-        private System.Windows.Forms.Label labelSENHA;
         private System.Windows.Forms.Label labelERRO;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 
