@@ -23,11 +23,9 @@ namespace Projeto_Pet_shop
 
             try
             {
-                // 1) Abre conexão
                 if (ClassSQLite.conexao.State != ConnectionState.Open)
                     ClassSQLite.conexao.Open();
 
-                // 2) Pega o id_pessoa
                 ClassSQLite.comando.CommandText =
                     "SELECT id_pessoa " +
                     "FROM tbl_pessoa " +
@@ -44,7 +42,6 @@ namespace Projeto_Pet_shop
                 }
                 int idPessoa = Convert.ToInt32(objPessoa);
 
-                // 3) Pega id_colaborador, departamento e data_demissao numa só consulta
                 ClassSQLite.comando.CommandText =
                     "SELECT id_colaborador, departamento, data_demissao " +
                     "FROM tbl_colaborador " +
@@ -63,7 +60,6 @@ namespace Projeto_Pet_shop
 
                     int idColab = readerCol.GetInt32(0);
                     string departamento = readerCol.GetString(1);
-                    // Se data_demissao não for null ou vazia, usuário está inativo
                     var dataDemissaoObj = readerCol["data_demissao"];
                     readerCol.Close();
 
@@ -73,20 +69,15 @@ namespace Projeto_Pet_shop
                         return;
                     }
 
-                    // 4) Armazena o id correto de colaborador na sessão
                     Sessao.IdColaborador = idColab;
 
-                    // 5) Fecha a conexão antes de abrir o próximo form
                     ClassSQLite.conexao.Close();
 
-                    // 6) Navega para a tela adequada
                     this.Hide();
                     if (departamento == "ADM")
                         new Form_Gerenciamento().ShowDialog();
-                    else // Operador (ou outro departamento padrão)
+                    else
                         new Form_Venda().ShowDialog();
-
-                    // 7) Fecha o login quando voltar
                     this.Close();
                 }
             }

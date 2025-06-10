@@ -19,6 +19,9 @@ Global
 		Teste1|Any CPU = Teste1|Any CPU
 		Teste1|ARM64 = Teste1|ARM64
 		Teste1|x64 = Teste1|x64
+		Tiago|Any CPU = Tiago|Any CPU
+		Tiago|ARM64 = Tiago|ARM64
+		Tiago|x64 = Tiago|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{7DBE1287-A3AD-47E7-A1B3-7A26355D5F6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -45,6 +48,12 @@ Global
 		{7DBE1287-A3AD-47E7-A1B3-7A26355D5F6F}.Teste1|ARM64.Build.0 = Teste1|ARM64
 		{7DBE1287-A3AD-47E7-A1B3-7A26355D5F6F}.Teste1|x64.ActiveCfg = Teste1|x64
 		{7DBE1287-A3AD-47E7-A1B3-7A26355D5F6F}.Teste1|x64.Build.0 = Teste1|x64
+		{7DBE1287-A3AD-47E7-A1B3-7A26355D5F6F}.Tiago|Any CPU.ActiveCfg = Tiago|Any CPU
+		{7DBE1287-A3AD-47E7-A1B3-7A26355D5F6F}.Tiago|Any CPU.Build.0 = Tiago|Any CPU
+		{7DBE1287-A3AD-47E7-A1B3-7A26355D5F6F}.Tiago|ARM64.ActiveCfg = Tiago|ARM64
+		{7DBE1287-A3AD-47E7-A1B3-7A26355D5F6F}.Tiago|ARM64.Build.0 = Tiago|ARM64
+		{7DBE1287-A3AD-47E7-A1B3-7A26355D5F6F}.Tiago|x64.ActiveCfg = Tiago|x64
+		{7DBE1287-A3AD-47E7-A1B3-7A26355D5F6F}.Tiago|x64.Build.0 = Tiago|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

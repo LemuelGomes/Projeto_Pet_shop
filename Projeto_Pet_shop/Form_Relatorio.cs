@@ -318,6 +318,16 @@ namespace Projeto_Pet_shop
                 doc.Close();
             }
         }
+
+        private void button_Sair_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            using (var Form_Relatorio = new Form_Gerenciamento())
+            {
+                Form_Relatorio.ShowDialog();
+            }
+            this.Close();
+        }
     }
 
     internal class ComboItem

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_GestaodePessoas));
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_Pesquisar = new System.Windows.Forms.TextBox();
@@ -61,9 +61,9 @@
             // 
             // dataGridView_Gestao
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView_Gestao.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView_Gestao.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView_Gestao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_Gestao.Location = new System.Drawing.Point(12, 71);
             this.dataGridView_Gestao.Name = "dataGridView_Gestao";
@@ -75,6 +75,7 @@
             this.button_Atualizar.FlatAppearance.BorderSize = 0;
             this.button_Atualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_Atualizar.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Atualizar.ForeColor = System.Drawing.Color.SteelBlue;
             this.button_Atualizar.Image = ((System.Drawing.Image)(resources.GetObject("button_Atualizar.Image")));
             this.button_Atualizar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_Atualizar.Location = new System.Drawing.Point(826, 281);
@@ -104,26 +105,29 @@
             this.button_Excluir.FlatAppearance.BorderSize = 0;
             this.button_Excluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_Excluir.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Excluir.ForeColor = System.Drawing.Color.Crimson;
             this.button_Excluir.Image = ((System.Drawing.Image)(resources.GetObject("button_Excluir.Image")));
             this.button_Excluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_Excluir.Location = new System.Drawing.Point(12, 281);
             this.button_Excluir.Name = "button_Excluir";
-            this.button_Excluir.Size = new System.Drawing.Size(217, 34);
+            this.button_Excluir.Size = new System.Drawing.Size(222, 34);
             this.button_Excluir.TabIndex = 5;
             this.button_Excluir.Text = "Desligar Colaborador";
             this.button_Excluir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button_Excluir.UseVisualStyleBackColor = true;
+            this.button_Excluir.Click += new System.EventHandler(this.button_Excluir_Click);
             // 
             // button_Pesquisar
             // 
             this.button_Pesquisar.FlatAppearance.BorderSize = 0;
             this.button_Pesquisar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_Pesquisar.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Pesquisar.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Pesquisar.ForeColor = System.Drawing.Color.SteelBlue;
             this.button_Pesquisar.Image = ((System.Drawing.Image)(resources.GetObject("button_Pesquisar.Image")));
             this.button_Pesquisar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_Pesquisar.Location = new System.Drawing.Point(494, 5);
             this.button_Pesquisar.Name = "button_Pesquisar";
-            this.button_Pesquisar.Size = new System.Drawing.Size(128, 38);
+            this.button_Pesquisar.Size = new System.Drawing.Size(141, 38);
             this.button_Pesquisar.TabIndex = 6;
             this.button_Pesquisar.Text = "Pesquisar";
             this.button_Pesquisar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -135,6 +139,7 @@
             this.button_Limpar.FlatAppearance.BorderSize = 0;
             this.button_Limpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_Limpar.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Limpar.ForeColor = System.Drawing.Color.Yellow;
             this.button_Limpar.Image = ((System.Drawing.Image)(resources.GetObject("button_Limpar.Image")));
             this.button_Limpar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_Limpar.Location = new System.Drawing.Point(843, 340);

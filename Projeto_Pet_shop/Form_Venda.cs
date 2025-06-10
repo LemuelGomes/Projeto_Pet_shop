@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SQLite;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -9,68 +10,59 @@ namespace Projeto_Pet_shop
     public partial class Form_Venda : Form
     {
         private int idVendaAtual = 0;
-        private decimal baseTotal = 0m;   // guarda o total sem taxa
+        private decimal baseTotal = 0m;
+        private readonly CultureInfo ptBR = new CultureInfo("pt-BR");
 
         public Form_Venda()
         {
             InitializeComponent();
 
-            // 1) Configura seleção para linhas inteiras e sem multiseleção
-            dataGridView_VendaRealizada.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView_VendaRealizada.MultiSelect = false;
+            // configura DataGridViews
             dataGridView_Venda.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView_Venda.MultiSelect = false;
+            dataGridView_VendaRealizada.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView_VendaRealizada.MultiSelect = false;
 
-            // 2) Define colunas do grid do carrinho (VendaRealizada)
+            // define colunas do carrinho
             dataGridView_VendaRealizada.Columns.Clear();
             dataGridView_VendaRealizada.Columns.Add("descricao", "Descrição");
             dataGridView_VendaRealizada.Columns.Add("quantidade", "Quantidade");
             dataGridView_VendaRealizada.Columns.Add("preco", "Preço");
-
-            // 3) Ajusta quais colunas são editáveis
-            //    - "descricao" e "preco" nunca editáveis
-            //    - "quantidade" editável para que o usuário possa alterar a quantidade antes de Atualizar
             dataGridView_VendaRealizada.Columns["descricao"].ReadOnly = true;
             dataGridView_VendaRealizada.Columns["preco"].ReadOnly = true;
             dataGridView_VendaRealizada.Columns["quantidade"].ReadOnly = false;
 
-            // 4) Associa eventos
+            // eventos
             this.Load += Form_Venda_Load;
             button_Pesquisar.Click += button_Pesquisar_Click;
             button_Adicionar.Click += button_Adicionar_Click;
-            button_NovaVenda.Click += button_NovaVenda_Click;
-            button_FinalizarVenda.Click += button_FinalizarVenda_Click;
+            button_Atualizar.Click += button_Atualizar_Click;
+            button_Remover.Click += button_Remover_Click;
             button_CancelarVenda.Click += button_CancelarVenda_Click;
-            comboBox_TipoPagamento.SelectedIndexChanged += comboBox_TipoPagamento_SelectedIndexChanged;
-            textBox_TaxaCartao.TextChanged += textBox_TaxaCartao_TextChanged;
+            button_FinalizarVenda.Click += button_FinalizarVenda_Click;
+            comboBox_TipoPagamento.SelectedIndexChanged += ComboBox_TipoPagamento_SelectedIndexChanged;
+            textBox_TaxaCartao.TextChanged += TextBox_TaxaCartao_TextChanged;
 
-            // 5) Prepara a tela (data, botões, etc.)
             InicializarCaixa();
         }
 
         private void Form_Venda_Load(object sender, EventArgs e)
         {
             CarregarProdutos();
-            // Exibe o próximo ID de venda no Label
             label_CodVenda.Text = ObterProximoIdVenda().ToString();
-            button_NovaVenda.PerformClick();
-            CheckCarrinhoVazio();
+            CancelarVenda();
         }
 
         private void InicializarCaixa()
         {
             label_Data.Text = DateTime.Now.ToShortDateString();
-            label_TotalVenda.Text = "0.00";
-            label_CodVenda.Text = "";
-            button_FinalizarVenda.Enabled = false;
-            button_CancelarVenda.Enabled = false;
-
+            label_TotalVenda.Text = (0m).ToString("C", ptBR);
             comboBox_TipoPagamento.Items.Clear();
-            comboBox_TipoPagamento.Items.Add("Dinheiro");
-            comboBox_TipoPagamento.Items.Add("Cartão");
+            comboBox_TipoPagamento.Items.AddRange(new[] { "Dinheiro", "Cartão" });
             comboBox_TipoPagamento.SelectedIndex = 0;
+            textBox_TaxaCartao.Clear();
             textBox_TaxaCartao.Enabled = false;
-            label4.Visible = false;  // suposição: label4 é o rótulo da taxa
+            button_FinalizarVenda.Enabled = false;
         }
 
         private void CarregarProdutos(string filtro = "")
@@ -80,31 +72,21 @@ namespace Projeto_Pet_shop
                 if (ClassSQLite.conexao.State != ConnectionState.Open)
                     ClassSQLite.conexao.Open();
 
-                if (string.IsNullOrWhiteSpace(filtro))
-                {
-                    ClassSQLite.comando.CommandText =
-                        "SELECT id, descricao_produto, preco_produto FROM tbl_produtos;";
-                }
-                else
-                {
-                    ClassSQLite.comando.CommandText =
-                        "SELECT id, descricao_produto, preco_produto " +
-                        "FROM tbl_produtos " +
-                        "WHERE descricao_produto LIKE '%" + filtro + "%';";
-                }
+                string sql = string.IsNullOrWhiteSpace(filtro)
+                    ? "SELECT id, descricao_produto, preco_produto FROM tbl_produtos;"
+                    : "SELECT id, descricao_produto, preco_produto FROM tbl_produtos WHERE descricao_produto LIKE @filtro;";
+                ClassSQLite.comando.CommandText = sql;
+                ClassSQLite.comando.Parameters.Clear();
+                if (!string.IsNullOrWhiteSpace(filtro))
+                    ClassSQLite.comando.Parameters.AddWithValue("@filtro", "%" + filtro + "%");
 
                 var da = new SQLiteDataAdapter(ClassSQLite.comando);
                 var dt = new DataTable();
                 da.Fill(dt);
-
                 dataGridView_Venda.DataSource = dt;
                 dataGridView_Venda.Columns["id"].Visible = false;
                 dataGridView_Venda.Columns["descricao_produto"].HeaderText = "Descrição";
                 dataGridView_Venda.Columns["preco_produto"].HeaderText = "Preço";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao carregar produtos: " + ex.Message);
             }
             finally
             {
@@ -114,92 +96,108 @@ namespace Projeto_Pet_shop
         }
 
         private void button_Pesquisar_Click(object sender, EventArgs e)
-            => CarregarProdutos(textBox_Pesquisar.Text);
-
-        private void button_NovaVenda_Click(object sender, EventArgs e)
         {
-            idVendaAtual = 0;
-            baseTotal = 0m;
-            dataGridView_VendaRealizada.Rows.Clear();
-            comboBox_TipoPagamento.SelectedIndex = 0;
-            label_TotalVenda.Text = "0.00";
-            textBox_TaxaCartao.Clear();
-            textBox_TaxaCartao.Enabled = false;
-            label4.Visible = false;
-            button_FinalizarVenda.Enabled = true;
-            button_CancelarVenda.Enabled = true;
-            label_Data.Text = DateTime.Now.ToShortDateString();
-            textBox_Pesquisar.Clear();
-
-            // Atualiza o próximo ID de venda
-            label_CodVenda.Text = ObterProximoIdVenda().ToString();
-            CarregarProdutos();
-            CheckCarrinhoVazio();
+            CarregarProdutos(textBox_Pesquisar.Text);
         }
 
         private void button_Adicionar_Click(object sender, EventArgs e)
         {
             if (dataGridView_Venda.SelectedRows.Count == 0) return;
-
             var row = dataGridView_Venda.SelectedRows[0];
             string desc = row.Cells["descricao_produto"].Value.ToString();
             decimal preco = Convert.ToDecimal(row.Cells["preco_produto"].Value);
-
             dataGridView_VendaRealizada.Rows.Add(desc, 1, preco);
             AtualizarTotal();
             CheckCarrinhoVazio();
         }
-        private void CheckCarrinhoVazio()
-        {
-            // Conta apenas linhas “de verdade” (não IsNewRow)
-            bool carrinhoVazio = dataGridView_VendaRealizada.Rows
-                .Cast<DataGridViewRow>()
-                .All(r => r.IsNewRow);
 
-            comboBox_TipoPagamento.Enabled = !carrinhoVazio;
-            button_FinalizarVenda.Enabled = !carrinhoVazio;
+        private void button_Atualizar_Click(object sender, EventArgs e)
+        {
+            if (dataGridView_VendaRealizada.SelectedRows.Count == 0) return;
+            var row = dataGridView_VendaRealizada.SelectedRows[0];
+            if (!int.TryParse(row.Cells["quantidade"].Value?.ToString(), out int q) || q < 1)
+            {
+                row.Cells["quantidade"].Value = 1;
+            }
+            AtualizarTotal();
+            CheckCarrinhoVazio();
+        }
+
+        private void button_Remover_Click(object sender, EventArgs e)
+        {
+            if (dataGridView_VendaRealizada.SelectedRows.Count == 0) return;
+            foreach (DataGridViewRow r in dataGridView_VendaRealizada.SelectedRows)
+                dataGridView_VendaRealizada.Rows.Remove(r);
+            AtualizarTotal();
+            CheckCarrinhoVazio();
+        }
+
+        private void button_CancelarVenda_Click(object sender, EventArgs e)
+        {
+            CancelarVenda();
         }
 
         private void AtualizarTotal()
         {
-            baseTotal = 0m;
-            foreach (DataGridViewRow linha in dataGridView_VendaRealizada.Rows)
-            {
-                int q = Convert.ToInt32(linha.Cells["quantidade"].Value);
-                decimal p = Convert.ToDecimal(linha.Cells["preco"].Value);
-                baseTotal += q * p;
-            }
-            label_TotalVenda.Text = baseTotal.ToString("0.00");
+            baseTotal = dataGridView_VendaRealizada.Rows.Cast<DataGridViewRow>()
+                .Where(r => !r.IsNewRow)
+                .Sum(r => Convert.ToInt32(r.Cells["quantidade"].Value) * Convert.ToDecimal(r.Cells["preco"].Value));
+            label_TotalVenda.Text = baseTotal.ToString("C", ptBR);
         }
 
-        private void comboBox_TipoPagamento_SelectedIndexChanged(object sender, EventArgs e)
-            => textBox_TaxaCartao.Enabled = (comboBox_TipoPagamento.SelectedItem.ToString() == "Cartão");
-
-        private void textBox_TaxaCartao_TextChanged(object sender, EventArgs e)
+        private void ComboBox_TipoPagamento_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox_TipoPagamento.SelectedItem.ToString() == "Cartão" &&
-                decimal.TryParse(textBox_TaxaCartao.Text, out var taxaPct))
+            textBox_TaxaCartao.Enabled = comboBox_TipoPagamento.SelectedItem.ToString() == "Cartão";
+            RecalcularComTaxa();
+        }
+
+        private void TextBox_TaxaCartao_TextChanged(object sender, EventArgs e)
+        {
+            RecalcularComTaxa();
+        }
+
+        private void RecalcularComTaxa()
+        {
+            if (comboBox_TipoPagamento.SelectedItem.ToString() == "Cartão"
+                && decimal.TryParse(textBox_TaxaCartao.Text, NumberStyles.Any, ptBR, out var tx))
             {
-                label4.Visible = true;
-                var tot = baseTotal * (1 + taxaPct / 100m);
-                label_TotalVenda.Text = tot.ToString("0.00");
+                label_TotalVenda.Text = (baseTotal * (1 + tx / 100m)).ToString("C", ptBR);
             }
             else
             {
-                label_TotalVenda.Text = baseTotal.ToString("0.00");
+                label_TotalVenda.Text = baseTotal.ToString("C", ptBR);
             }
+        }
+
+        private void CheckCarrinhoVazio()
+        {
+            bool vazio = dataGridView_VendaRealizada.Rows.Cast<DataGridViewRow>()
+                .All(r => r.IsNewRow);
+            if (vazio)
+                CancelarVenda();
+            else
+                button_FinalizarVenda.Enabled = true;
+        }
+
+        private void CancelarVenda()
+        {
+            dataGridView_VendaRealizada.Rows.Clear();
+            baseTotal = 0m;
+            label_TotalVenda.Text = baseTotal.ToString("C", ptBR);
+            textBox_TaxaCartao.Clear();
+            textBox_TaxaCartao.Enabled = false;
+            button_FinalizarVenda.Enabled = false;
+            label_Data.Text = DateTime.Now.ToShortDateString();
+            label_CodVenda.Text = ObterProximoIdVenda().ToString();
         }
 
         private void button_FinalizarVenda_Click(object sender, EventArgs e)
         {
-            // Conta apenas as linhas válidas (não-NewRow)
-            int linhasValidas = dataGridView_VendaRealizada.Rows
-                .Cast<DataGridViewRow>()
-                .Count(r => !r.IsNewRow);
-
-            if (linhasValidas == 0)
+            var itens = dataGridView_VendaRealizada.Rows.Cast<DataGridViewRow>()
+                              .Where(r => !r.IsNewRow).ToList();
+            if (!itens.Any())
             {
-                MessageBox.Show("Adicione itens ao carrinho antes de finalizar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Adicione itens antes de finalizar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -208,51 +206,50 @@ namespace Projeto_Pet_shop
                 if (ClassSQLite.conexao.State != ConnectionState.Open)
                     ClassSQLite.conexao.Open();
 
-                // (restante do seu código de inserção permanece igual)
-                string carrinhoStr = "";
-                foreach (DataGridViewRow linha in dataGridView_VendaRealizada.Rows)
+                // Atualiza estoque
+                foreach (var row in itens)
                 {
-                    if (linha.IsNewRow)
-                        continue;
-
-                    string desc = linha.Cells["descricao"].Value.ToString();
-                    int qtd = Convert.ToInt32(linha.Cells["quantidade"].Value);
-                    carrinhoStr += $"{desc} x{qtd}; ";
+                    string desc = row.Cells["descricao"].Value.ToString();
+                    int qtd = Convert.ToInt32(row.Cells["quantidade"].Value);
+                    ClassSQLite.comando.CommandText =
+                        "UPDATE tbl_produtos SET estoque = estoque - @qtd WHERE descricao_produto = @desc;";
+                    ClassSQLite.comando.Parameters.Clear();
+                    ClassSQLite.comando.Parameters.AddWithValue("@qtd", qtd);
+                    ClassSQLite.comando.Parameters.AddWithValue("@desc", desc);
+                    ClassSQLite.comando.ExecuteNonQuery();
                 }
 
-                string dataVenda = DateTime.Parse(label_Data.Text).ToString("yyyy-MM-dd");
+                // Insere venda
+                string dt = DateTime.Now.ToString("yyyy-MM-dd");
+                string carr = string.Join("; ",
+                    itens.Select(r => $"{r.Cells["descricao"].Value} x{r.Cells["quantidade"].Value}")) + ";";
 
-                // Insere na tbl_venda
                 ClassSQLite.comando.CommandText =
-                    "INSERT INTO tbl_venda (data_venda, carrinho, fk_colaborador) " +
-                    "VALUES (@data, @carrinho, @colab);";
+                    "INSERT INTO tbl_venda (data_venda, carrinho, fk_colaborador) VALUES (@dt,@carr,@col);";
                 ClassSQLite.comando.Parameters.Clear();
-                ClassSQLite.comando.Parameters.AddWithValue("@data", dataVenda);
-                ClassSQLite.comando.Parameters.AddWithValue("@carrinho", carrinhoStr);
-                ClassSQLite.comando.Parameters.AddWithValue("@colab", Sessao.IdColaborador);
+                ClassSQLite.comando.Parameters.AddWithValue("@dt", dt);
+                ClassSQLite.comando.Parameters.AddWithValue("@carr", carr);
+                ClassSQLite.comando.Parameters.AddWithValue("@col", Sessao.IdColaborador);
                 ClassSQLite.comando.ExecuteNonQuery();
 
-                // Recupera id gerado
                 ClassSQLite.comando.CommandText = "SELECT last_insert_rowid();";
-                int idVenda = Convert.ToInt32(ClassSQLite.comando.ExecuteScalar());
-                label_CodVenda.Text = idVenda.ToString();
+                int idv = Convert.ToInt32(ClassSQLite.comando.ExecuteScalar());
+                label_CodVenda.Text = idv.ToString();
 
-                // Insere na tbl_pagamento
-                decimal valor = Convert.ToDecimal(label_TotalVenda.Text);
+                // Insere pagamento
+                decimal valor = decimal.Parse(label_TotalVenda.Text, NumberStyles.Currency, ptBR);
                 string tipo = comboBox_TipoPagamento.SelectedItem.ToString();
                 ClassSQLite.comando.CommandText =
-                    "INSERT INTO tbl_pagamento " +
-                    "(data_pagamento, tipo_pagamento, valor_total, fk_colaborador) " +
-                    "VALUES (@data, @tipo, @valor, @colab);";
+                    "INSERT INTO tbl_pagamento (data_pagamento,tipo_pagamento,valor_total,fk_colaborador) VALUES (@dt,@tipo,@valor,@col);";
                 ClassSQLite.comando.Parameters.Clear();
-                ClassSQLite.comando.Parameters.AddWithValue("@data", dataVenda);
+                ClassSQLite.comando.Parameters.AddWithValue("@dt", dt);
                 ClassSQLite.comando.Parameters.AddWithValue("@tipo", tipo);
                 ClassSQLite.comando.Parameters.AddWithValue("@valor", valor);
-                ClassSQLite.comando.Parameters.AddWithValue("@colab", Sessao.IdColaborador);
+                ClassSQLite.comando.Parameters.AddWithValue("@col", Sessao.IdColaborador);
                 ClassSQLite.comando.ExecuteNonQuery();
 
-                MessageBox.Show($"Venda #{idVenda} finalizada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                button_NovaVenda.PerformClick();
+                MessageBox.Show($"Venda #{idv} finalizada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CancelarVenda();
             }
             catch (Exception ex)
             {
@@ -268,84 +265,23 @@ namespace Projeto_Pet_shop
 
         private int ObterProximoIdVenda()
         {
-            int proximo = 1;
+            int p = 1;
             try
             {
                 if (ClassSQLite.conexao.State != ConnectionState.Open)
                     ClassSQLite.conexao.Open();
-
-                ClassSQLite.comando.CommandText =
-                  "SELECT seq FROM sqlite_sequence WHERE name = 'tbl_venda';";
-                object obj = ClassSQLite.comando.ExecuteScalar();
-                if (obj != null && int.TryParse(obj.ToString(), out var ultimo))
-                {
-                    proximo = ultimo + 1;
-                }
+                ClassSQLite.comando.CommandText = "SELECT seq FROM sqlite_sequence WHERE name='tbl_venda'";
+                var o = ClassSQLite.comando.ExecuteScalar();
+                if (o != null && int.TryParse(o.ToString(), out var s))
+                    p = s + 1;
             }
-            catch
-            {
-                // Se não existir registro em sqlite_sequence, mantém proximo = 1
-            }
+            catch { }
             finally
             {
                 if (ClassSQLite.conexao.State == ConnectionState.Open)
                     ClassSQLite.conexao.Close();
             }
-            return proximo;
-        }
-
-        private void button_Remover_Click(object sender, EventArgs e)
-        {
-            // Verifica se existe alguma linha selecionada
-            if (dataGridView_VendaRealizada.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Selecione um item para remover.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Remove todas as linhas selecionadas (normalmente é uma só)
-            foreach (DataGridViewRow linha in dataGridView_VendaRealizada.SelectedRows)
-            {
-                dataGridView_VendaRealizada.Rows.Remove(linha);
-            }
-
-            // Recalcula o total (chama o método já existente)
-            AtualizarTotal();
-            CheckCarrinhoVazio();
-        }
-
-        private void button_Atualizar_Click(object sender, EventArgs e)
-        {
-            // 1) Verifica se alguma linha está selecionada
-            if (dataGridView_VendaRealizada.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Selecione um item para atualizar a quantidade.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            var row = dataGridView_VendaRealizada.SelectedRows[0];
-
-            // 2) Tenta converter o valor da célula "quantidade" para inteiro
-            if (!int.TryParse(row.Cells["quantidade"].Value?.ToString(), out int novaQuantidade) || novaQuantidade < 1)
-            {
-                MessageBox.Show("Quantidade inválida. Digite um número inteiro maior ou igual a 1.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                // Restaura para 1, por segurança
-                row.Cells["quantidade"].Value = 1;
-                return;
-            }
-
-            // 3) Se quiser, você pode também ajustar alguma outra lógica no próprio row,
-            //    mas como “quantidade” e “preço” são colunas separadas e “AtualizarTotal” multiplica ambos,
-            //    basta chamar o recálculo abaixo.
-
-            AtualizarTotal();
-            CheckCarrinhoVazio();
-        }
-
-        private void button_CancelarVenda_Click(object sender, EventArgs e)
-        {
-            button_NovaVenda.PerformClick();
+            return p;
         }
     }
 }

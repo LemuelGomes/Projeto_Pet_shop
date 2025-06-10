@@ -278,5 +278,79 @@ namespace Projeto_Pet_shop
             // Recarrega o grid após atualização
             CarregarGestao(textBox_Pesquisar.Text.Trim());
         }
+
+        private void button_Excluir_Click(object sender, EventArgs e)
+        {
+            if (dataGridView_Gestao.SelectedRows.Count == 0)
+            {
+                MessageBox.Show(
+                    "Selecione um colaborador para excluir.",
+                    "Atenção",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
+            // 2) Pega os IDs da linha selecionada
+            var row = dataGridView_Gestao.SelectedRows[0];
+            int idColab = Convert.ToInt32(row.Cells["id_colaborador"].Value);
+            int idPessoa = Convert.ToInt32(row.Cells["id_pessoa"].Value);
+
+            // 3) Confirmação
+            var resp = MessageBox.Show(
+                "Deseja realmente excluir este colaborador?\n" +
+                "Os registros de vendedor e pessoa serão removidos.",
+                "Confirmar exclusão",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+            if (resp != DialogResult.Yes) return;
+
+            // 4) Excluir do banco
+            try
+            {
+                if (ClassSQLite.conexao.State != ConnectionState.Open)
+                    ClassSQLite.conexao.Open();
+
+                // Exclui primeiro o colaborador
+                ClassSQLite.comando.CommandText =
+                    "DELETE FROM tbl_colaborador WHERE id_colaborador = @idColab;";
+                ClassSQLite.comando.Parameters.Clear();
+                ClassSQLite.comando.Parameters.AddWithValue("@idColab", idColab);
+                ClassSQLite.comando.ExecuteNonQuery();
+
+                // Exclui a pessoa associada
+                ClassSQLite.comando.CommandText =
+                    "DELETE FROM tbl_pessoa WHERE id_pessoa = @idPessoa;";
+                ClassSQLite.comando.Parameters.Clear();
+                ClassSQLite.comando.Parameters.AddWithValue("@idPessoa", idPessoa);
+                ClassSQLite.comando.ExecuteNonQuery();
+
+                MessageBox.Show(
+                    "Colaborador excluído com sucesso!",
+                    "Sucesso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Erro ao excluir colaborador:\n" + ex.Message,
+                    "Erro",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+            finally
+            {
+                if (ClassSQLite.conexao.State == ConnectionState.Open)
+                    ClassSQLite.conexao.Close();
+            }
+
+            // 5) Atualiza o grid
+            CarregarGestao();
+        }
     }
 }

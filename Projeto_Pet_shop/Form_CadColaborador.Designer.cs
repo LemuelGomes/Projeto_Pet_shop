@@ -71,70 +71,70 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 33);
+            this.label1.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(11, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(185, 18);
+            this.label1.Size = new System.Drawing.Size(220, 23);
             this.label1.TabIndex = 1;
             this.label1.Text = "Nome do Colaborador";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 90);
+            this.label2.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(11, 85);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(229, 18);
+            this.label2.Size = new System.Drawing.Size(274, 23);
             this.label2.TabIndex = 2;
             this.label2.Text = "Sobrenome do Colaborador";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(9, 149);
+            this.label3.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(12, 144);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 18);
+            this.label3.Size = new System.Drawing.Size(63, 23);
             this.label3.TabIndex = 3;
             this.label3.Text = "Email";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 210);
+            this.label4.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(12, 205);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 18);
+            this.label4.Size = new System.Drawing.Size(45, 23);
             this.label4.TabIndex = 4;
             this.label4.Text = "CPF";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(9, 271);
+            this.label5.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(11, 266);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(188, 18);
+            this.label5.Size = new System.Drawing.Size(224, 23);
             this.label5.TabIndex = 5;
             this.label5.Text = "Senha do Colaborador";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(9, 331);
+            this.label6.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(12, 326);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(158, 18);
+            this.label6.Size = new System.Drawing.Size(183, 23);
             this.label6.TabIndex = 6;
             this.label6.Text = "Data de Admissão";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(12, 391);
+            this.label7.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(12, 386);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(55, 18);
+            this.label7.Size = new System.Drawing.Size(66, 23);
             this.label7.TabIndex = 7;
             this.label7.Text = "Cargo";
             // 
@@ -180,8 +180,6 @@
             // 
             // dateTimePicker_Admissao
             // 
-            this.dateTimePicker_Admissao.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePicker_Admissao.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker_Admissao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker_Admissao.Location = new System.Drawing.Point(12, 352);
@@ -203,7 +201,7 @@
             // 
             this.groupBox_Departamento.Controls.Add(this.radioButton_Operador);
             this.groupBox_Departamento.Controls.Add(this.radioButton_ADM);
-            this.groupBox_Departamento.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox_Departamento.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox_Departamento.Location = new System.Drawing.Point(12, 444);
             this.groupBox_Departamento.Name = "groupBox_Departamento";
             this.groupBox_Departamento.Size = new System.Drawing.Size(269, 56);
@@ -214,9 +212,10 @@
             // radioButton_Operador
             // 
             this.radioButton_Operador.AutoSize = true;
+            this.radioButton_Operador.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButton_Operador.Location = new System.Drawing.Point(162, 26);
             this.radioButton_Operador.Name = "radioButton_Operador";
-            this.radioButton_Operador.Size = new System.Drawing.Size(101, 22);
+            this.radioButton_Operador.Size = new System.Drawing.Size(93, 22);
             this.radioButton_Operador.TabIndex = 1;
             this.radioButton_Operador.TabStop = true;
             this.radioButton_Operador.Text = "Operador";
@@ -225,9 +224,10 @@
             // radioButton_ADM
             // 
             this.radioButton_ADM.AutoSize = true;
+            this.radioButton_ADM.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButton_ADM.Location = new System.Drawing.Point(6, 26);
             this.radioButton_ADM.Name = "radioButton_ADM";
-            this.radioButton_ADM.Size = new System.Drawing.Size(140, 22);
+            this.radioButton_ADM.Size = new System.Drawing.Size(124, 22);
             this.radioButton_ADM.TabIndex = 0;
             this.radioButton_ADM.TabStop = true;
             this.radioButton_ADM.Text = "Administrador";
@@ -273,7 +273,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_CadColaborador";
             this.Text = "Cadastro de Colaborador";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_CadColaborador_FormClosing);
             this.groupBox_Departamento.ResumeLayout(false);
             this.groupBox_Departamento.PerformLayout();
             this.ResumeLayout(false);
