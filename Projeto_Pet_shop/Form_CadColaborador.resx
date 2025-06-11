@@ -124,7 +124,7 @@
   <data name="button_Cadastrar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAAA5hJREFUWEfdl2tIU2Ecxte5bTov2zS7zCy3yrxhmZaVzAtWVlihmaa5TM1muJTs
+        wAAADsABataJCQAAA5hJREFUWEfdl2tIU2Ecxte5bTov2zS7zCy3yrxhmZaVzAtWVlihmaa5TM1muJTs
         YpRis5tdLGZRiZessCIrIutDQV8qgi52oSIqIoK+RAUx6CbxxHuite0Fc3lG0eD35fA+z//H2QuHv0wm
         kzEsL9/C8vL3DMd/cmQQy35lOe6bwlvZ+yeQrNjBy98xnLBWJpMNkrn+GE6o8A8ebUssa0ByZZMT42YW
         ICPXhCtPev8IkiUdU0u3wn+4zsYJilZKQvDyuTsxby013F0B80YrZi0oEck0VuDczTd2AdJlKG+Ev1ZP
@@ -190,19 +190,13 @@
   <metadata name="radioButton_ADM.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="radioButton_Operador.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="radioButton_ADM.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="button_Sair.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="button_Sair.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        6QAAAOkBVJIUSwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAT7SURBVFhHtZZr
+        5wAAAOcB8BtYtQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAT7SURBVFhHtZZr
         TFN3GMZPcEgdKJRAVhYGDi0bAVvHtm44NsgkxCpGFi7CohubExOTZR/9MD5osqwOGIskIkWghV5oS9vT
         9hzp6QHaglIuAxk3x0SCs41ANWTTNqHo8l8KAu2/PbRx7El+SXPe93nepzlpUgQJUt8OXNxzzswrLTfz
         rpebeUPlZp693MxbeYH789A58+WGs6bLJV/f+mk37H9pne36OfmMubrpjLnKecZUBYLCXOX8xlTVWNZT

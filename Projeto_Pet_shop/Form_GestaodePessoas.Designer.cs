@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_GestaodePessoas));
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_Pesquisar = new System.Windows.Forms.TextBox();
@@ -61,12 +63,27 @@
             // 
             // dataGridView_Gestao
             // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView_Gestao.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView_Gestao.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView_Gestao.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView_Gestao.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dataGridView_Gestao.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView_Gestao.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.DarkBlue;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_Gestao.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView_Gestao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_Gestao.Location = new System.Drawing.Point(12, 71);
             this.dataGridView_Gestao.Name = "dataGridView_Gestao";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView_Gestao.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView_Gestao.Size = new System.Drawing.Size(943, 204);
             this.dataGridView_Gestao.TabIndex = 2;
             // 
@@ -139,7 +156,7 @@
             this.button_Limpar.FlatAppearance.BorderSize = 0;
             this.button_Limpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_Limpar.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Limpar.ForeColor = System.Drawing.Color.Yellow;
+            this.button_Limpar.ForeColor = System.Drawing.Color.Gold;
             this.button_Limpar.Image = ((System.Drawing.Image)(resources.GetObject("button_Limpar.Image")));
             this.button_Limpar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_Limpar.Location = new System.Drawing.Point(843, 340);
@@ -155,6 +172,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(960, 450);
             this.Controls.Add(this.button_Limpar);
             this.Controls.Add(this.button_Pesquisar);
@@ -164,6 +182,7 @@
             this.Controls.Add(this.dataGridView_Gestao);
             this.Controls.Add(this.textBox_Pesquisar);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_GestaodePessoas";
             this.Text = "Gestão de Pessoas";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Gestao)).EndInit();

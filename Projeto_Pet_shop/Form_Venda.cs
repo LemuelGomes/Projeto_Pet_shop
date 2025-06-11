@@ -9,7 +9,6 @@ namespace Projeto_Pet_shop
 {
     public partial class Form_Venda : Form
     {
-        private int idVendaAtual = 0;
         private decimal baseTotal = 0m;
         private readonly CultureInfo ptBR = new CultureInfo("pt-BR");
 
@@ -35,11 +34,8 @@ namespace Projeto_Pet_shop
             // eventos
             this.Load += Form_Venda_Load;
             button_Pesquisar.Click += button_Pesquisar_Click;
-            button_Adicionar.Click += button_Adicionar_Click;
             button_Atualizar.Click += button_Atualizar_Click;
-            button_Remover.Click += button_Remover_Click;
             button_CancelarVenda.Click += button_CancelarVenda_Click;
-            button_FinalizarVenda.Click += button_FinalizarVenda_Click;
             comboBox_TipoPagamento.SelectedIndexChanged += ComboBox_TipoPagamento_SelectedIndexChanged;
             textBox_TaxaCartao.TextChanged += TextBox_TaxaCartao_TextChanged;
 
@@ -63,6 +59,8 @@ namespace Projeto_Pet_shop
             textBox_TaxaCartao.Clear();
             textBox_TaxaCartao.Enabled = false;
             button_FinalizarVenda.Enabled = false;
+            textBox_Pesquisar.Text = "";
+            CarregarProdutos();
         }
 
         private void CarregarProdutos(string filtro = "")
@@ -73,8 +71,9 @@ namespace Projeto_Pet_shop
                     ClassSQLite.conexao.Open();
 
                 string sql = string.IsNullOrWhiteSpace(filtro)
-                    ? "SELECT id, descricao_produto, preco_produto FROM tbl_produtos;"
-                    : "SELECT id, descricao_produto, preco_produto FROM tbl_produtos WHERE descricao_produto LIKE @filtro;";
+                ? "SELECT id, descricao_produto, preco_produto, quantidade_produto FROM tbl_produtos;"
+                : "SELECT id, descricao_produto, preco_produto FROM tbl_produtos WHERE descricao_produto LIKE @filtro;";
+
                 ClassSQLite.comando.CommandText = sql;
                 ClassSQLite.comando.Parameters.Clear();
                 if (!string.IsNullOrWhiteSpace(filtro))
@@ -87,6 +86,7 @@ namespace Projeto_Pet_shop
                 dataGridView_Venda.Columns["id"].Visible = false;
                 dataGridView_Venda.Columns["descricao_produto"].HeaderText = "Descrição";
                 dataGridView_Venda.Columns["preco_produto"].HeaderText = "Preço";
+                dataGridView_Venda.Columns["quantidade_produto"].HeaderText = "Estoque";
             }
             finally
             {
@@ -108,6 +108,7 @@ namespace Projeto_Pet_shop
             decimal preco = Convert.ToDecimal(row.Cells["preco_produto"].Value);
             dataGridView_VendaRealizada.Rows.Add(desc, 1, preco);
             AtualizarTotal();
+            RecalcularComTaxa();
             CheckCarrinhoVazio();
         }
 
@@ -120,6 +121,7 @@ namespace Projeto_Pet_shop
                 row.Cells["quantidade"].Value = 1;
             }
             AtualizarTotal();
+            RecalcularComTaxa();
             CheckCarrinhoVazio();
         }
 
@@ -148,6 +150,9 @@ namespace Projeto_Pet_shop
         private void ComboBox_TipoPagamento_SelectedIndexChanged(object sender, EventArgs e)
         {
             textBox_TaxaCartao.Enabled = comboBox_TipoPagamento.SelectedItem.ToString() == "Cartão";
+            label4.Enabled = comboBox_TipoPagamento.SelectedItem.ToString() == "Cartão";
+            textBox_TaxaCartao.Visible = comboBox_TipoPagamento.SelectedItem.ToString() == "Cartão";
+            label4.Visible = comboBox_TipoPagamento.SelectedItem.ToString() == "Cartão";
             RecalcularComTaxa();
         }
 
@@ -189,17 +194,14 @@ namespace Projeto_Pet_shop
             button_FinalizarVenda.Enabled = false;
             label_Data.Text = DateTime.Now.ToShortDateString();
             label_CodVenda.Text = ObterProximoIdVenda().ToString();
+
+            InicializarCaixa();
         }
 
         private void button_FinalizarVenda_Click(object sender, EventArgs e)
         {
             var itens = dataGridView_VendaRealizada.Rows.Cast<DataGridViewRow>()
                               .Where(r => !r.IsNewRow).ToList();
-            if (!itens.Any())
-            {
-                MessageBox.Show("Adicione itens antes de finalizar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
             try
             {

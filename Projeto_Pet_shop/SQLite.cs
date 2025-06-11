@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS tbl_pessoa (
 
 -- Insere somente Lemuel Gomes
 INSERT INTO tbl_pessoa (id_pessoa, nome, sobrenome, email, cpf, senha) VALUES
-  (1, 'Lemuel', 'Gomes', '123', '4782364834', '123');
+  (1, 'Padrão', 'Padrão', '123', 'Padrão', '123');
 
 -- --------------------------------------------------------
 -- Tabela: tbl_colaborador
@@ -98,7 +98,6 @@ CREATE TABLE IF NOT EXISTS tbl_produtos (
   quantidade_produto  INTEGER NOT NULL DEFAULT 0,
   preco_custo         REAL    NOT NULL,
   preco_produto       REAL    NOT NULL,
-  estoque             INTEGER NOT NULL DEFAULT 0,
   fk_colaborador      INTEGER NOT NULL,
   fk_pagamento        INTEGER DEFAULT NULL,
   FOREIGN KEY(fk_colaborador) REFERENCES tbl_colaborador(id_colaborador),

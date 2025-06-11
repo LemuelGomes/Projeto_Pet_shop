@@ -124,6 +124,7 @@
             // 
             // Cadastro_StripMenu
             // 
+            this.Cadastro_StripMenu.BackColor = System.Drawing.Color.Transparent;
             this.Cadastro_StripMenu.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Cadastro_StripMenu.GripMargin = new System.Windows.Forms.Padding(10, 10, 50, 50);
             this.Cadastro_StripMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -133,7 +134,7 @@
             this.sairToolStripMenuItem});
             this.Cadastro_StripMenu.Location = new System.Drawing.Point(0, 0);
             this.Cadastro_StripMenu.Name = "Cadastro_StripMenu";
-            this.Cadastro_StripMenu.Size = new System.Drawing.Size(900, 72);
+            this.Cadastro_StripMenu.Size = new System.Drawing.Size(977, 72);
             this.Cadastro_StripMenu.TabIndex = 4;
             this.Cadastro_StripMenu.Text = "menuStrip1";
             // 
@@ -217,8 +218,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 511);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(977, 542);
             this.Controls.Add(this.Cadastro_StripMenu);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.Cadastro_StripMenu;
             this.Name = "Form_Gerenciamento";
