@@ -200,68 +200,106 @@ namespace Projeto_Pet_shop
 
         private void button_FinalizarVenda_Click(object sender, EventArgs e)
         {
-            var itens = dataGridView_VendaRealizada.Rows.Cast<DataGridViewRow>()
-                              .Where(r => !r.IsNewRow).ToList();
+            // 1) coleta os itens da venda
+            var itens = dataGridView_VendaRealizada
+                            .Rows
+                            .Cast<DataGridViewRow>()
+                            .Where(r => !r.IsNewRow)
+                            .ToList();
 
             try
             {
+                // 2) abre conexão
                 if (ClassSQLite.conexao.State != ConnectionState.Open)
                     ClassSQLite.conexao.Open();
 
-                // Atualiza estoque
-                foreach (var row in itens)
+                // 3) inicia transação
+                using (var tx = ClassSQLite.conexao.BeginTransaction())
+                using (var cmd = ClassSQLite.conexao.CreateCommand())
                 {
-                    string desc = row.Cells["descricao"].Value.ToString();
-                    int qtd = Convert.ToInt32(row.Cells["quantidade"].Value);
-                    ClassSQLite.comando.CommandText =
-                        "UPDATE tbl_produtos SET estoque = estoque - @qtd WHERE descricao_produto = @desc;";
-                    ClassSQLite.comando.Parameters.Clear();
-                    ClassSQLite.comando.Parameters.AddWithValue("@qtd", qtd);
-                    ClassSQLite.comando.Parameters.AddWithValue("@desc", desc);
-                    ClassSQLite.comando.ExecuteNonQuery();
+                    cmd.Transaction = tx;
+
+                    // 4) atualiza estoque de cada produto
+                    cmd.CommandText =
+                        "UPDATE tbl_produtos " +
+                        "SET quantidade_produto = quantidade_produto - @qtd " +
+                        "WHERE descricao_produto = @desc;";
+                    foreach (var row in itens)
+                    {
+                        int qtd = Convert.ToInt32(row.Cells["quantidade"].Value);
+                        string desc = row.Cells["descricao"].Value.ToString();
+
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@qtd", qtd);
+                        cmd.Parameters.AddWithValue("@desc", desc);
+
+                        int affected = cmd.ExecuteNonQuery();
+                        if (affected == 0)
+                            throw new InvalidOperationException(
+                                $"Produto '{desc}' não encontrado no estoque.");
+                    }
+
+                    // 5) insere registro de venda
+                    cmd.CommandText =
+                        "INSERT INTO tbl_venda (data_venda, carrinho, fk_colaborador) " +
+                        "VALUES (@dt, @carr, @col);";
+                    cmd.Parameters.Clear();
+                    string dt = DateTime.Now.ToString("yyyy-MM-dd");
+                    string carr = string.Join("; ",
+                        itens.Select(r => $"{r.Cells["descricao"].Value} x{r.Cells["quantidade"].Value}")) + ";";
+
+                    cmd.Parameters.AddWithValue("@dt", dt);
+                    cmd.Parameters.AddWithValue("@carr", carr);
+                    cmd.Parameters.AddWithValue("@col", Sessao.IdColaborador);
+                    cmd.ExecuteNonQuery();
+
+                    // 6) obtém o ID da venda
+                    cmd.CommandText = "SELECT last_insert_rowid();";
+                    var idv = Convert.ToInt32(cmd.ExecuteScalar());
+                    label_CodVenda.Text = idv.ToString();
+
+                    // 7) insere o pagamento
+                    cmd.CommandText =
+                        "INSERT INTO tbl_pagamento (data_pagamento, tipo_pagamento, valor_total, fk_colaborador) " +
+                        "VALUES (@dt, @tipo, @valor, @col);";
+                    cmd.Parameters.Clear();
+                    var ptBR = new CultureInfo("pt-BR");
+                    decimal valor = decimal.Parse(label_TotalVenda.Text, NumberStyles.Currency, ptBR);
+                    string tipo = comboBox_TipoPagamento.SelectedItem.ToString();
+
+                    cmd.Parameters.AddWithValue("@dt", dt);
+                    cmd.Parameters.AddWithValue("@tipo", tipo);
+                    cmd.Parameters.AddWithValue("@valor", valor);
+                    cmd.Parameters.AddWithValue("@col", Sessao.IdColaborador);
+                    cmd.ExecuteNonQuery();
+
+                    // 8) confirma todas as operações
+                    tx.Commit();
                 }
 
-                // Insere venda
-                string dt = DateTime.Now.ToString("yyyy-MM-dd");
-                string carr = string.Join("; ",
-                    itens.Select(r => $"{r.Cells["descricao"].Value} x{r.Cells["quantidade"].Value}")) + ";";
+                MessageBox.Show(
+                    $"Venda #{label_CodVenda.Text} finalizada com sucesso!",
+                    "Sucesso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
 
-                ClassSQLite.comando.CommandText =
-                    "INSERT INTO tbl_venda (data_venda, carrinho, fk_colaborador) VALUES (@dt,@carr,@col);";
-                ClassSQLite.comando.Parameters.Clear();
-                ClassSQLite.comando.Parameters.AddWithValue("@dt", dt);
-                ClassSQLite.comando.Parameters.AddWithValue("@carr", carr);
-                ClassSQLite.comando.Parameters.AddWithValue("@col", Sessao.IdColaborador);
-                ClassSQLite.comando.ExecuteNonQuery();
-
-                ClassSQLite.comando.CommandText = "SELECT last_insert_rowid();";
-                int idv = Convert.ToInt32(ClassSQLite.comando.ExecuteScalar());
-                label_CodVenda.Text = idv.ToString();
-
-                // Insere pagamento
-                decimal valor = decimal.Parse(label_TotalVenda.Text, NumberStyles.Currency, ptBR);
-                string tipo = comboBox_TipoPagamento.SelectedItem.ToString();
-                ClassSQLite.comando.CommandText =
-                    "INSERT INTO tbl_pagamento (data_pagamento,tipo_pagamento,valor_total,fk_colaborador) VALUES (@dt,@tipo,@valor,@col);";
-                ClassSQLite.comando.Parameters.Clear();
-                ClassSQLite.comando.Parameters.AddWithValue("@dt", dt);
-                ClassSQLite.comando.Parameters.AddWithValue("@tipo", tipo);
-                ClassSQLite.comando.Parameters.AddWithValue("@valor", valor);
-                ClassSQLite.comando.Parameters.AddWithValue("@col", Sessao.IdColaborador);
-                ClassSQLite.comando.ExecuteNonQuery();
-
-                MessageBox.Show($"Venda #{idv} finalizada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CancelarVenda();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao finalizar venda: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "Erro ao finalizar venda: " + ex.Message,
+                    "Erro",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
             finally
             {
+                // 11) fecha conexão
                 if (ClassSQLite.conexao.State == ConnectionState.Open)
                     ClassSQLite.conexao.Close();
-                ClassSQLite.comando.Parameters.Clear();
             }
         }
 
@@ -284,6 +322,14 @@ namespace Projeto_Pet_shop
                     ClassSQLite.conexao.Close();
             }
             return p;
+        }
+
+        private void button_Sair_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form_Login Form_Venda = new Form_Login();
+            Form_Venda.ShowDialog();
+            this.Close();
         }
     }
 }

@@ -223,11 +223,12 @@
             this.ClientSize = new System.Drawing.Size(977, 542);
             this.Controls.Add(this.Cadastro_StripMenu);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.Cadastro_StripMenu;
+            this.MaximizeBox = false;
             this.Name = "Form_Gerenciamento";
             this.Text = "Gerenciamento Pet-Shop";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Gerenciamento_FormClosing);
             this.Cadastrar.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.cadastro_MenuStripMenuItem.ResumeLayout(false);

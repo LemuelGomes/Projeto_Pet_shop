@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Venda));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button_FinalizarVenda = new System.Windows.Forms.Button();
             this.button_Adicionar = new System.Windows.Forms.Button();
             this.dataGridView_VendaRealizada = new System.Windows.Forms.DataGridView();
@@ -53,6 +53,7 @@
             this.button_Pesquisar = new System.Windows.Forms.Button();
             this.dataGridView_Venda = new System.Windows.Forms.DataGridView();
             this.panel_Vendas = new System.Windows.Forms.Panel();
+            this.button_Sair = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_VendaRealizada)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Venda)).BeginInit();
             this.panel_Vendas.SuspendLayout();
@@ -64,7 +65,7 @@
             this.button_FinalizarVenda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_FinalizarVenda.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_FinalizarVenda.Image = ((System.Drawing.Image)(resources.GetObject("button_FinalizarVenda.Image")));
-            this.button_FinalizarVenda.Location = new System.Drawing.Point(826, 241);
+            this.button_FinalizarVenda.Location = new System.Drawing.Point(829, 232);
             this.button_FinalizarVenda.Name = "button_FinalizarVenda";
             this.button_FinalizarVenda.Size = new System.Drawing.Size(86, 78);
             this.button_FinalizarVenda.TabIndex = 4;
@@ -89,19 +90,19 @@
             this.dataGridView_VendaRealizada.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView_VendaRealizada.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dataGridView_VendaRealizada.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.DarkBlue;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_VendaRealizada.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.DarkBlue;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_VendaRealizada.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView_VendaRealizada.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_VendaRealizada.Location = new System.Drawing.Point(464, 103);
             this.dataGridView_VendaRealizada.Name = "dataGridView_VendaRealizada";
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView_VendaRealizada.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView_VendaRealizada.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView_VendaRealizada.Size = new System.Drawing.Size(359, 335);
             this.dataGridView_VendaRealizada.TabIndex = 5;
             // 
@@ -109,7 +110,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(594, 75);
+            this.label1.Location = new System.Drawing.Point(466, 77);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(181, 23);
             this.label1.TabIndex = 6;
@@ -128,7 +129,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(709, 87);
+            this.label3.Location = new System.Drawing.Point(581, 89);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 13);
             this.label3.TabIndex = 8;
@@ -139,7 +140,7 @@
             this.label_CodVenda.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label_CodVenda.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_CodVenda.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label_CodVenda.Location = new System.Drawing.Point(781, 71);
+            this.label_CodVenda.Location = new System.Drawing.Point(653, 73);
             this.label_CodVenda.Name = "label_CodVenda";
             this.label_CodVenda.Size = new System.Drawing.Size(42, 32);
             this.label_CodVenda.TabIndex = 9;
@@ -150,7 +151,7 @@
             this.label_Data.BackColor = System.Drawing.Color.Transparent;
             this.label_Data.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_Data.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label_Data.Location = new System.Drawing.Point(672, 9);
+            this.label_Data.Location = new System.Drawing.Point(627, 9);
             this.label_Data.Name = "label_Data";
             this.label_Data.Size = new System.Drawing.Size(148, 23);
             this.label_Data.TabIndex = 10;
@@ -281,19 +282,19 @@
             this.dataGridView_Venda.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView_Venda.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dataGridView_Venda.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.DarkBlue;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_Venda.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.DarkBlue;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_Venda.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView_Venda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_Venda.Location = new System.Drawing.Point(3, 95);
             this.dataGridView_Venda.Name = "dataGridView_Venda";
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridView_Venda.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView_Venda.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView_Venda.Size = new System.Drawing.Size(340, 335);
             this.dataGridView_Venda.TabIndex = 2;
             // 
@@ -309,12 +310,25 @@
             this.panel_Vendas.Size = new System.Drawing.Size(346, 561);
             this.panel_Vendas.TabIndex = 0;
             // 
+            // button_Sair
+            // 
+            this.button_Sair.FlatAppearance.BorderSize = 0;
+            this.button_Sair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_Sair.Image = ((System.Drawing.Image)(resources.GetObject("button_Sair.Image")));
+            this.button_Sair.Location = new System.Drawing.Point(846, 12);
+            this.button_Sair.Name = "button_Sair";
+            this.button_Sair.Size = new System.Drawing.Size(62, 64);
+            this.button_Sair.TabIndex = 17;
+            this.button_Sair.UseVisualStyleBackColor = true;
+            this.button_Sair.Click += new System.EventHandler(this.button_Sair_Click);
+            // 
             // Form_Venda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(920, 608);
+            this.Controls.Add(this.button_Sair);
             this.Controls.Add(this.button_Atualizar);
             this.Controls.Add(this.button_Remover);
             this.Controls.Add(this.label4);
@@ -330,7 +344,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView_VendaRealizada);
             this.Controls.Add(this.panel_Vendas);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form_Venda";
             this.Text = "Caixa de Vendas";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_VendaRealizada)).EndInit();
@@ -363,5 +379,6 @@
         private System.Windows.Forms.Button button_Pesquisar;
         private System.Windows.Forms.DataGridView dataGridView_Venda;
         private System.Windows.Forms.Panel panel_Vendas;
+        private System.Windows.Forms.Button button_Sair;
     }
 }

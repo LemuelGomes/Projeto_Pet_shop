@@ -136,7 +136,9 @@
             this.Controls.Add(this.button_Limpar);
             this.Controls.Add(this.button_Entrar);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form_Login";
             this.Text = "Pet_Shop";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Login_FormClosing);

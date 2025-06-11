@@ -197,7 +197,9 @@
             this.Controls.Add(this.comboBox_TipoPagamento);
             this.Controls.Add(this.button_GerarRelatorio);
             this.Controls.Add(this.dataGridView_Relatorio);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form_Relatorio";
             this.Text = "Emissão de Relatório";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Relatorio)).EndInit();

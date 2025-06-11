@@ -101,20 +101,29 @@ namespace Projeto_Pet_shop
 
         private void Form_Login_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing)
             {
-                var resp = MessageBox.Show(
-                    "Deseja realmente sair da aplicação?",
-                    "Confirmar saída",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question
-                );
-
-                if (resp == DialogResult.No)
+                if (e.CloseReason == CloseReason.UserClosing)
                 {
-                    e.Cancel = true;
+                    var resp = MessageBox.Show(
+                        "Deseja realmente sair da aplicação?",
+                        "Confirmar saída",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question
+                    );
+
+                    if (resp == DialogResult.No)
+                    {
+                        // cancela o fechamento e permanece no login
+                        e.Cancel = true;
+                    }
+                    else
+                    {
+                        // confirma saída: fecha tudo de uma vez
+                        Application.Exit();
+                    }
                 }
             }
+
         }
     }
 }

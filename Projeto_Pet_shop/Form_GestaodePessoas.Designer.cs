@@ -182,7 +182,9 @@
             this.Controls.Add(this.dataGridView_Gestao);
             this.Controls.Add(this.textBox_Pesquisar);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form_GestaodePessoas";
             this.Text = "Gestão de Pessoas";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Gestao)).EndInit();

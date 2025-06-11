@@ -15,7 +15,6 @@ namespace Projeto_Pet_shop
         public Form_Gerenciamento()
         {
             InitializeComponent();
-            this.FormClosing += Form_Gerenciamento_FormClosing;
         }
         private void cadastrarColaboradorToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -66,14 +65,6 @@ namespace Projeto_Pet_shop
             }
         }
 
-        private void configurçõesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Form_Suporte FormGerenciamento = new Form_Suporte();
-            FormGerenciamento.Closed += (s, args) => this.Close();
-            FormGerenciamento.Show();
-        }
-
         private void cadastrarColaboradorToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -120,17 +111,6 @@ namespace Projeto_Pet_shop
             Form_Login Form_Gerenciamento = new Form_Login();
             Form_Gerenciamento.ShowDialog();
             this.Close();
-        }
-
-        private void Form_Gerenciamento_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                this.Hide();
-                Form_Login Form_Gerenciamento = new Form_Login();
-                Form_Gerenciamento.ShowDialog();
-                this.Close();
-            }
         }
     }
 }
