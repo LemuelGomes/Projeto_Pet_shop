@@ -113,12 +113,10 @@ namespace Projeto_Pet_shop
 
                     if (resp == DialogResult.No)
                     {
-                        // cancela o fechamento e permanece no login
                         e.Cancel = true;
                     }
                     else
                     {
-                        // confirma saída: fecha tudo de uma vez
                         Application.Exit();
                     }
                 }

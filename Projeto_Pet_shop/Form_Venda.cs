@@ -200,7 +200,6 @@ namespace Projeto_Pet_shop
 
         private void button_FinalizarVenda_Click(object sender, EventArgs e)
         {
-            // 1) coleta os itens da venda
             var itens = dataGridView_VendaRealizada
                             .Rows
                             .Cast<DataGridViewRow>()
@@ -209,17 +208,13 @@ namespace Projeto_Pet_shop
 
             try
             {
-                // 2) abre conexão
                 if (ClassSQLite.conexao.State != ConnectionState.Open)
                     ClassSQLite.conexao.Open();
 
-                // 3) inicia transação
                 using (var tx = ClassSQLite.conexao.BeginTransaction())
                 using (var cmd = ClassSQLite.conexao.CreateCommand())
                 {
                     cmd.Transaction = tx;
-
-                    // 4) atualiza estoque de cada produto
                     cmd.CommandText =
                         "UPDATE tbl_produtos " +
                         "SET quantidade_produto = quantidade_produto - @qtd " +
@@ -239,7 +234,6 @@ namespace Projeto_Pet_shop
                                 $"Produto '{desc}' não encontrado no estoque.");
                     }
 
-                    // 5) insere registro de venda
                     cmd.CommandText =
                         "INSERT INTO tbl_venda (data_venda, carrinho, fk_colaborador) " +
                         "VALUES (@dt, @carr, @col);";
@@ -253,12 +247,10 @@ namespace Projeto_Pet_shop
                     cmd.Parameters.AddWithValue("@col", Sessao.IdColaborador);
                     cmd.ExecuteNonQuery();
 
-                    // 6) obtém o ID da venda
                     cmd.CommandText = "SELECT last_insert_rowid();";
                     var idv = Convert.ToInt32(cmd.ExecuteScalar());
                     label_CodVenda.Text = idv.ToString();
 
-                    // 7) insere o pagamento
                     cmd.CommandText =
                         "INSERT INTO tbl_pagamento (data_pagamento, tipo_pagamento, valor_total, fk_colaborador) " +
                         "VALUES (@dt, @tipo, @valor, @col);";
@@ -273,7 +265,6 @@ namespace Projeto_Pet_shop
                     cmd.Parameters.AddWithValue("@col", Sessao.IdColaborador);
                     cmd.ExecuteNonQuery();
 
-                    // 8) confirma todas as operações
                     tx.Commit();
                 }
 
@@ -297,7 +288,6 @@ namespace Projeto_Pet_shop
             }
             finally
             {
-                // 11) fecha conexão
                 if (ClassSQLite.conexao.State == ConnectionState.Open)
                     ClassSQLite.conexao.Close();
             }

@@ -57,9 +57,9 @@ CREATE TABLE IF NOT EXISTS tbl_colaborador (
   FOREIGN KEY(fk_pessoa) REFERENCES tbl_pessoa(id_pessoa)
 );
 
--- Insere Lemuel como colaborador admitido em 2024-06-02
+-- Insere um colaborador padrão admitido em 2025-06-22
 INSERT INTO tbl_colaborador (id_colaborador, data_admissao, data_demissao, departamento, cargo, fk_pessoa) VALUES
-  (1, '2024-06-02', NULL, 'ADM', 'CEO', 1);
+  (1, '2025-06-22', NULL, 'ADM', 'CEO', 1);
 
 -- --------------------------------------------------------
 -- Tabela: tbl_pagamento
